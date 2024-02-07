@@ -128,13 +128,35 @@ namespace TravelServicesDirectoryFinal.Controllers
          * A function to add a new customer to the system.
          * It uses the Customer model class to add a new entry.
          * 
+         * To use this file as post data,
+         *  - Navigate to the root folder
+         *  - Copy the file path as text
+         *  - Provide the path in the curl request
+         *  - cd into that directory
+         * 
+         * To use the curl request method
+         * 
          * POST: curl -d @customers.json -H "Content-type:application/json" https://localhost:44375/api/CustomersData/AddCustomer
          * 
+         * The file name only method was not working. Used the relative path to the file.
+         * 
+         * curl -d @C:\Users\Asus\source\repos\TravelServicesDirectoryFinal\TravelServicesDirectoryFinal\jsondata\customers.json -H 
+         * "Content-type:application/json" https://localhost:44375/api/CustomersData/AddCustomer
+         * 
          * Here, @customers.json is the post data that is passed with the request while -H is the header type for the request.
+         * 
+         *  -> -d is the post data
+         *  -> -H is the information for the type of content we are sending
+         * 
+         * After, adding one entry, we can just change the values from the json data below and keep adding more entries.
+         * This json data can serve as the post data when we try to add a new customer
          * 
          * Result: 
          * 
          * A new customer is added to the system's database.
+         * 
+         * {"CustomerId":5,"Firstname":"Steve","Lastname":"Rogers","DOB":"1989-12-03T00:00:00","Address":"102 Borack Road",
+         * "Email":"Steve@gmail.com","Phone":"122-352-1223"}
          * 
          */
 
