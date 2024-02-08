@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using TravelServicesDirectoryFinal.Models;
+using System.Diagnostics;
 
 namespace TravelServicesDirectoryFinal.Controllers
 {
@@ -89,10 +90,53 @@ namespace TravelServicesDirectoryFinal.Controllers
             return Ok(CustomerDto);
         }
 
-        // PUT: api/CustomersData/5
+        /*
+         * A function to update a specific customer from the database using the id.
+         * It uses the Customer model class to access the data and has the id and customer object as parameters.
+         * 
+         * To use this file as post data,
+         *  - Navigate to the root folder
+         *  - Copy the file path as text
+         *  - Provide the path in the curl request
+         *  - cd into that directory
+         * 
+         * To use the curl request method
+         * 
+         * POST: curl -d @customers.json -H "Content-type:application/json" https://localhost:44375/api/CustomersData/UpdateCustomer/6
+         * 
+         * The file name only method was not working. Used the relative path to the file.
+         * 
+         * curl -d @C:\Users\Asus\source\repos\TravelServicesDirectoryFinal\TravelServicesDirectoryFinal\jsondata\customers.json -H "Content-type:application/json" https://localhost:44375/api/CustomersData/UpdateCustomer/6
+         * 
+         * Here, @customers.json is the post data that is passed with the request while -H is the header type for the request.
+         * 
+         *  -> -d is the post data
+         *  -> -H is the information for the type of content we are sending
+         *  
+         *  JSON Data for the update (To add, just remove the id attribute)
+         *  {
+                "CustomerId": 6,
+                "Firstname": "Daniel",
+                "Lastname": "Bryan",
+                "DOB": "11/12/1991",
+                "Address": "87 Chimichangas Street",
+                "Email": "Daniel@gmail.com",
+                "Phone": "122-352-0000"
+            }
+         * 
+         * Result:
+         * 
+         * The customer data in the local database is updated.
+         * 
+         */
+
+        // POST: api/CustomersData/UpdateCustomer/6
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutCustomer(int id, Customer customer)
+        [HttpPost]
+        public IHttpActionResult UpdateCustomer(int id, Customer customer)
         {
+            Debug.WriteLine("I am in the update customer method!");
+            Debug.WriteLine("The received customer id is: " +  id);
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

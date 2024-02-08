@@ -98,9 +98,49 @@ namespace TravelServicesDirectoryFinal.Controllers
             return Ok(BookingDto);
         }
 
-        // PUT: api/BookingsData/5
+        /*
+        * A function to update a specific booking from the database using the id.
+        * It uses the Booking model class to access the data and has the id and booking object as parameters.
+        * 
+        * To use this file as post data,
+        *  - Navigate to the root folder
+        *  - Copy the file path as text
+        *  - Provide the path in the curl request
+        *  - cd into that directory
+        * 
+        * To use the curl request method
+        * 
+        * POST: curl -d @bookings.json -H "Content-type:application/json" https://localhost:44375/api/BookingsData/UpdateBooking/6
+        * 
+        * The file name only method was not working. Used the relative path to the file.
+        * 
+        * curl -d @C:\Users\Asus\source\repos\TravelServicesDirectoryFinal\TravelServicesDirectoryFinal\jsondata\bookings.json -H "Content-type:application/json" https://localhost:44375/api/BookingsData/UpdateBooking/6
+        * 
+        * Here, @bookings.json is the post data that is passed with the request while -H is the header type for the request.
+        * 
+        *  -> -d is the post data
+        *  -> -H is the information for the type of content we are sending
+        *  
+        *  JSON Data for the update (To add, just remove the id attribute)
+        *  {
+               "BookingId": 6,
+               "Status": "Paid",
+               "BookingDate": "12/03/2023",
+               "GrandTotal": "1250",
+               "PkgId": "2",
+               "CustomerId": "6"
+           }
+        * 
+        * Result:
+        * 
+        * The booking data in the local database is updated.
+        * 
+        */
+
+        // POST: api/BookingsData/UpdateBooking/6
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutBooking(int id, Booking booking)
+        [HttpPost]
+        public IHttpActionResult UpdateBooking(int id, Booking booking)
         {
             if (!ModelState.IsValid)
             {
@@ -133,9 +173,56 @@ namespace TravelServicesDirectoryFinal.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/BookingsData
+        /*
+         * A function to add a new booking to the system.
+         * It uses the Booking model class to add a new entry.
+         * 
+         * To use this file as post data,
+         *  - Navigate to the root folder
+         *  - Copy the file path as text
+         *  - Provide the path in the curl request
+         *  - cd into that directory
+         * 
+         * To use the curl request method
+         * 
+         * POST: curl -d @bookings.json -H "Content-type:application/json" https://localhost:44375/api/BookingsData/AddBooking
+         * 
+         * The file name only method was not working. Used the relative path to the file.
+         * 
+         * curl -d @C:\Users\Asus\source\repos\TravelServicesDirectoryFinal\TravelServicesDirectoryFinal\jsondata\bookings.json -H "Content-type:application/json" https://localhost:44375/api/BookingsData/AddBooking
+         * 
+         * Here, @bookings.json is the post data that is passed with the request while -H is the header type for the request.
+         * 
+         *  -> -d is the post data
+         *  -> -H is the information for the type of content we are sending
+         * 
+         * After, adding one entry, we can just change the values from the json data below and keep adding more entries.
+         * This json data can serve as the post data when we try to add a new booking
+         * 
+         * Note:
+         * ------------
+         * 
+         * This json data can serve as the post data when we try to add a new booking but as this table shares some ids from other
+         * 2 tables (Customer and Package), we should mind about the data validity for those columns.
+         * 
+         * Since, the Pk has been shared, there should already be an existing id for the package and customer before inserting into the 
+         * bookings bridging table since we are using them to add into the bridging table.
+         * 
+         * They not existing will violate the FK relationship.
+         * 
+         * Result: 
+         * 
+         * A new booking is added to the system's database.
+         * 
+         * {"BookingId":4,"Status":"Pending","BookingDate":"2023-12-03T00:00:00","GrandTotal":1250.0,"PkgId":1,"Package":null,"CustomerId":1,
+         * "Customer":null}
+         * 
+         */
+
+        // POST: api/BookingsData/AddBooking
         [ResponseType(typeof(Booking))]
-        public IHttpActionResult PostBooking(Booking booking)
+        [HttpPost]
+        public IHttpActionResult AddBooking(Booking booking)
         {
             if (!ModelState.IsValid)
             {

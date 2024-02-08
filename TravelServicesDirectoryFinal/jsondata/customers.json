@@ -1,8 +1,9 @@
 ﻿{
-    "Firstname": "Daniel",
-    "Lastname": "Bryan",
-    "DOB": "11/12/1991",
-    "Address": "87 Road to Road",
-    "Email": "Daniel@gmail.com",
-    "Phone": "122-352-0000"
+  "CustomerId": 6,
+  "Firstname": "Daniel",
+  "Lastname": "Bryan",
+  "DOB": "11/12/1991",
+  "Address": "87 Chimichangas Street",
+  "Email": "Daniel@gmail.com",
+  "Phone": "122-352-0000"
 }

@@ -95,9 +95,51 @@ namespace TravelServicesDirectoryFinal.Controllers
             return Ok(PackageDto);
         }
 
-        // PUT: api/PackagesData/5
+        /*
+         * A function to update a specific package from the database using the id.
+         * It uses the Package model class to access the data and has the id and package object as parameters.
+         * 
+         * To use this file as post data,
+         *  - Navigate to the root folder
+         *  - Copy the file path as text
+         *  - Provide the path in the curl request
+         *  - cd into that directory
+         * 
+         * To use the curl request method
+         * 
+         * POST: curl -d @packages.json -H "Content-type:application/json" https://localhost:44375/api/PackagesData/UpdatePackage/5
+         * 
+         * The file name only method was not working. Used the relative path to the file.
+         * 
+         * curl -d @C:\Users\Asus\source\repos\TravelServicesDirectoryFinal\TravelServicesDirectoryFinal\jsondata\packages.json -H "Content-type:application/json" https://localhost:44375/api/PackagesData/UpdatePackage/5
+         * 
+         * Here, @packages.json is the post data that is passed with the request while -H is the header type for the request.
+         * 
+         *  -> -d is the post data
+         *  -> -H is the information for the type of content we are sending
+         *  
+         *  JSON Data for the update (To add, just remove the id attribute)
+         *  {
+                "PkgId": 5,
+                "Name": "Malta Vacay",
+                "Type": "Holiday",
+                "AccommodationType": "Resort",
+                "Destination": "Malta",
+                "Departure": "12-29-2023",
+                "Arrival": "01-10-2024",
+                "Cost": 1480
+            }
+         * 
+         * Result:
+         * 
+         * The package data in the local database is updated.
+         * 
+         */
+
+        // POST: api/PackagesData/UpdatePackage/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutPackage(int id, Package package)
+        [HttpPost]
+        public IHttpActionResult UpdatePackage(int id, Package package)
         {
             if (!ModelState.IsValid)
             {
@@ -130,9 +172,46 @@ namespace TravelServicesDirectoryFinal.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/PackagesData
+        /*
+         * A function to add a new package to the system.
+         * It uses the Package model class to add a new entry.
+         * 
+         * To use this file as post data,
+         *  - Navigate to the root folder
+         *  - Copy the file path as text
+         *  - Provide the path in the curl request
+         *  - cd into that directory
+         * 
+         * To use the curl request method
+         * 
+         * POST: curl -d @packages.json -H "Content-type:application/json" https://localhost:44375/api/PackagesData/AddPackage
+         * 
+         * The file name only method was not working. Used the relative path to the file.
+         * 
+         * curl -d @C:\Users\Asus\source\repos\TravelServicesDirectoryFinal\TravelServicesDirectoryFinal\jsondata\packages.json -H 
+         * "Content-type:application/json" https://localhost:44375/api/PackagesData/AddPackage
+         * 
+         * Here, @packages.json is the post data that is passed with the request while -H is the header type for the request.
+         * 
+         *  -> -d is the post data
+         *  -> -H is the information for the type of content we are sending
+         * 
+         * After, adding one entry, we can just change the values from the json data below and keep adding more entries.
+         * This json data can serve as the post data when we try to add a new package
+         * 
+         * Result: 
+         * 
+         * A new package is added to the system's database.
+         * 
+         * {"PkgId":5,"Name":"Malta Vacay","Type":"Medical","AccommodationType":"Hotel","Destination":"Malta","Departure":"2023-12-29T00:00:00",
+         * "Arrival":"2024-01-10T00:00:00","Cost":1480.0}
+         * 
+         */
+
+        // POST: api/PackagesData/AddPackage
         [ResponseType(typeof(Package))]
-        public IHttpActionResult PostPackage(Package package)
+        [HttpPost]
+        public IHttpActionResult AddPackage(Package package)
         {
             if (!ModelState.IsValid)
             {

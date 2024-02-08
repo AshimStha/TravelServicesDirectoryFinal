@@ -1,0 +1,10 @@
+﻿{
+  "PkgId": 5,
+  "Name": "Malta Vacay",
+  "Type": "Holiday",
+  "AccommodationType": "Resort",
+  "Destination": "Malta",
+  "Departure": "12-29-2023",
+  "Arrival": "01-10-2024",
+  "Cost": 1480
+}

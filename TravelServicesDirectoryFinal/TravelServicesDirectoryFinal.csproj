@@ -233,6 +233,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <None Include="jsondata\customers.json" />
+    <None Include="jsondata\packages.json" />
+    <None Include="jsondata\bookings.json" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
