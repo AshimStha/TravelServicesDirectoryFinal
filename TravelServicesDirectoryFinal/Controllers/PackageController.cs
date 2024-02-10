@@ -292,6 +292,11 @@ namespace TravelServicesDirectoryFinal.Controllers
             }
         }
 
+        /*
+         * Delete was not implemented for this model because there is no need. The admin handles the booking and performs the action on 
+         * the booking entries.
+         */
+
         // GET: Package/Delete/5
         public ActionResult Delete(int id)
         {

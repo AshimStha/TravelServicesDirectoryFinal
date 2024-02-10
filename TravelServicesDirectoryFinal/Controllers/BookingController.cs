@@ -308,7 +308,7 @@ namespace TravelServicesDirectoryFinal.Controllers
         // GET: Booking/DeleteConfirm/5
         public ActionResult DeleteConfirm(int id)
         {
-            string url = "bookingsdata/findbooking/" + id;
+            string url = "findbooking/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             BookingDto selectedBooking = response.Content.ReadAsAsync<BookingDto>().Result;
             return View(selectedBooking);
