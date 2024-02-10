@@ -4,16 +4,20 @@
 
 <h2>Create a Booking</h2>
 
+<!--Link to to back to the bookings list page-->
+<a href="/Booking/List">Go back to Bookings list</a>
+
+<!--Form for the booking creation-->
 <form action="/Booking/Create" method="POST">
-    <div class="form-group">
+    <div class="form-group pb-2">
         <label for="Status">Status:</label>
         <input type="text" class="form-control" id="Status" placeholder="Enter the status">
     </div>
-    <div class="form-group">
+    <div class="form-group pb-2">
         <label for="BDate">Booking Date:</label>
         <input type="date" class="form-control" id="BDate" placeholder="Enter the booking date">
     </div>
-    <div class="form-group">
+    <div class="form-group pb-2">
         <label for="GTotal">Grand Total:</label>
         <input type="text" class="form-control" id="GTotal" placeholder="Enter the grand total">
     </div>
@@ -22,11 +26,11 @@
     dynamic.-->
     <!--For now, we need to add a new data entry in both the tables that have no association with the booking entity and then can provide
         the IDs in these input fields respecting the FK relationships.-->
-    <div class="form-group">
+    <div class="form-group pb-2">
         <label for="PId">Package ID:</label>
         <input type="text" class="form-control" id="PId" placeholder="Enter the package id">
     </div>
-    <div class="form-group">
+    <div class="form-group pb-2">
         <label for="CId">Customer ID:</label>
         <input type="text" class="form-control" id="CId" placeholder="Enter your name">
     </div>

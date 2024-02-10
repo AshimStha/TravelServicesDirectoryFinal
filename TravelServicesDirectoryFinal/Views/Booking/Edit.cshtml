@@ -6,30 +6,39 @@
 
 <h2>Edit Booking Details</h2>
 
+<!--Link to to back to the bookings list page-->
+<a href="/Booking/List">Go back to Bookings list</a>
+
+
 <form method="POST" action="/Booking/Update/@Model.BookingId">
     <input type="text" style="display:none;" name="BookingID" value="@Model.BookingId" />
-    <div>
-        <label>Status:</label> <input type="text" name="Status" value="@Model.Status" />
+    <div class="form-group pb-2">
+        <label for="PName">Status:</label>
+        <input type="text" name="Status" class="form-control" id="PName" value="@Model.Status" />
     </div>
-    <div>
-        <label>Booking Date:</label> <input type="date" name="BookingDate" value="@Model.BookingDate" />
+    <div class="form-group pb-2">
+        <label for="BDate">Booking Date:</label>
+        <input type="date" name="BookingDate" class="form-control" id="BDate" value="@Model.BookingDate" />
     </div>
-    <div>
-        <label>Grand Total:</label> <input type="text" name="GrandTotal" value="@Model.GrandTotal" />
+    <div class="form-group pb-2">
+        <label for="GTotal">Grand Total:</label>
+        <input type="text" name="GrandTotal" class="form-control" id="GTotal" value="@Model.GrandTotal" />
     </div>
     <!--For the package and customer IDs, we can have the feature of selecting the available IDs from a dropdown menu in the future
         iteration of this application. Since, the users will not have the access to our DB, it can be considered an extra feature to make it
         dynamic.-->
     <!--For now, we need to add a new data entry in both the tables that have no association with the booking entity and then can provide
         the IDs in these input fields respecting the FK relationships.-->
-    <div>
-        <label>Package ID:</label> <input type="number" name="PkgId" value="@Model.PkgId" />
+    <div class="form-group pb-2">
+        <label for="PkgID">Package ID:</label>
+        <input type="number" name="PkgId" class="form-control" id="PkgID" value="@Model.PkgId" />
+    </div>
+    <div class="form-group pb-2">
+        <label for="CustID">Customer ID:</label>
+        <input type="number" name="CustomerId" class="form-control" id="CustID" value="@Model.CustomerId" />
     </div>
     <div>
-        <label>Customer ID:</label> <input type="number" name="CustomerId" value="@Model.CustomerId" />
-    </div>
-    <div>
-        <input type="submit" value="Update" />
+        <input type="submit" class="btn btn-success" value="Update" />
     </div>
 
 </form>

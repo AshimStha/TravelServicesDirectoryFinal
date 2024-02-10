@@ -9,14 +9,14 @@
 
 <!--The container-->
 <div class="list-group">
-    <div class="row d-flex justify-content-evenly mb-5">
-        <div class="col d-flex justify-content-around">
+    <div class="row h-25 d-flex justify-content-between mb-5">
+        <div class="col d-flex justify-content-start">
             <!--Link to go back to the home page-->
-            <a class="btn btn-success" href="/Home/Index">Home</a>
+            <a class="btn btn-success me-2 bkng_home_btn" href="/Home/Index">Home</a>
             <!--Link to go back to the home page-->
-            <a class="btn btn-primary" href="/Booking/New">New Booking</a>
+            <a class="btn btn-primary bkng_new_btn" href="/Booking/New">New Booking</a>
         </div>
-        <div class="col d-flex justify-content-between">
+        <div class="col d-flex justify-content-end">
             <!--Form to search for a booking entry-->
             <form class="mb-4" action="/Teacher/List" method="GET">
                 <input type="text" name="SearchKey" autocomplete="off" placeholder="Search a booking" />

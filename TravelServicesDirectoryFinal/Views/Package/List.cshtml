@@ -8,11 +8,15 @@
 
 <h2>Packages List</h2>
 
+<!--Link to navigate to create package form-->
+<a class="btn btn-danger my-4" href="/Package/New">New Package</a>
+
+
 <!--For each packages in our model-->
 @foreach (var package in Model)
 {
     // The a tag leads to the package details page
-    <h2><a href="/Package/Details/@package.PkgId">@package.Name</a></h2>
+    <h4><a href="/Package/Details/@package.PkgId">@package.Name</a></h4>
     // @package means we are talking about the package
-    <div>Cost: @package.Cost</div>
+    <p class="pb-2">Cost: @package.Cost</p>
 }

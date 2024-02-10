@@ -8,11 +8,15 @@
 
 <h2>Customers List</h2>
 
+<!--Link to navigate to create customer form-->
+<a class="btn btn-danger my-4" href="/Customer/New">New Customer</a>
+
+
 <!--For each customers in our model-->
 @foreach (var customer in Model)
 {
     // The a tag leads to the customer details page
-    <h2><a href="/Customer/Details/@customer.CustomerId">@customer.Firstname @customer.Lastname</a></h2>
+    <h4><a href="/Customer/Details/@customer.CustomerId">@customer.Firstname @customer.Lastname</a></h4>
     // @customer means we are talking about the customer
-    <div>Email: @customer.Email</div>
+    <p class="pb-2">Email: @customer.Email</p>
 }

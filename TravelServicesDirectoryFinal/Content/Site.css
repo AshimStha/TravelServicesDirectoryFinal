@@ -106,3 +106,7 @@ textarea {
         border: 0px;
         border-radius: 10px;
     }
+
+.bkng_home_btn, .bkng_new_btn {
+    padding: 0.375rem 0.75rem;
+}

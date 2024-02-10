@@ -6,33 +6,41 @@
 
 <h2>Edit Package Details</h2>
 
+<!--Link to to back to the packages list page-->
+<a href="/Package/List">Go back to Packages list</a>
+
 <form method="POST" action="/Package/Update/@Model.PkgId">
     <input type="text" style="display:none;" name="PkgId" value="@Model.PkgId" />
-    <div>
-        <div>
-            <label>Package Name:</label> <input type="text" name="PackageName" value="@Model.Name" />
-        </div>
-        <div>
-            <label>Package Type:</label> <input type="text" name="PackageType" value="@Model.Type" />
-        </div>
-        <div>
-            <label>Accommodation Type:</label> <input type="text" name="AccommodationType" value="@Model.AccommodationType" />
-        </div>
-        <div>
-            <label>Destination:</label> <input type="text" name="Destination" value="@Model.Destination" />
-        </div>
-        <div>
-            <label>Departure Date:</label> <input type="date" name="Departure" value="@Model.Departure" />
-        </div>
-        <div>
-            <label>Arrival Date:</label> <input type="date" name="Arrival" value="@Model.Arrival" />
-        </div>
-        <div>
-            <label>Cost:</label> <input type="number" name="Cost" value="@Model.Cost" />
-        </div>
-        <div>
-            <input type="submit" value="Update" />
-        </div>
-    </div>
 
+    <div class="form-group pb-2">
+        <label for="PName">Package Name:</label>
+        <input type="text" name="PackageName" class="form-control" id="PName" value="@Model.Name" />
+    </div>
+    <div class="form-group pb-2">
+        <label for="PType">Package Type:</label>
+        <input type="text" name="PackageType" class="form-control" id="PType" value="@Model.Type" />
+    </div>
+    <div class="form-group pb-2">
+        <label for="AType">Accommodation Type:</label>
+        <input type="text" name="AccommodationType" class="form-control" id="AType" value="@Model.AccommodationType" />
+    </div>
+    <div class="form-group pb-2">
+        <label for="destination">Destination:</label>
+        <input type="text" name="Destination" class="form-control" id="destination" value="@Model.Destination" />
+    </div>
+    <div class="form-group pb-2">
+        <label for="DDate">Departure Date:</label>
+        <input type="date" name="Departure" class="form-control" id="DDate" value="@Model.Departure" />
+    </div>
+    <div class="form-group pb-2">
+        <label for="ADate">Arrival Date:</label>
+        <input type="date" name="Arrival" class="form-control" id="ADate" value="@Model.Arrival" />
+    </div>
+    <div class="form-group pb-2">
+        <label for="cost">Cost:</label>
+        <input type="number" name="Cost" class="form-control" id="cost" value="@Model.Cost" />
+    </div>
+    <div>
+        <input type="submit" class="btn btn-success" value="Update Package" />
+    </div>
 </form>

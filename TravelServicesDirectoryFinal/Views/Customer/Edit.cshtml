@@ -6,29 +6,38 @@
 
 <h2>Edit Customer Details</h2>
 
+<!--Link to to back to the customers list page-->
+<a href="/Customer/List">Go back to Customers</a>
+
+<!--Form to create a new customer-->
 <form method="POST" action="/Customer/Update/@Model.CustomerId">
     <input type="text" style="display:none;" name="CustomerId" value="@Model.CustomerId" />
 
-    <div>
-        <label>Firstname:</label> <input type="text" name="FirstName" value="@Model.Firstname" />
+    <div class="form-group pb-2">
+        <label for="FirstName">Firstname:</label>
+        <input type="text" name="FirstName" class="form-control" id="Status" placeholder="Enter the firstname" value="@Model.Firstname" />
+    </div>
+    <div class="form-group pb-2">
+        <label for="Lastname">Lastname:</label>
+        <input type="text" name="LastName" class="form-control" id="Lastname" placeholder="Enter the lastname" value="@Model.Lastname" />
+    </div>
+    <div class="form-group pb-2">
+        <label for="DOB">Date of Birth:</label>
+        <input type="date" name="DOB" class="form-control" id="DOB" placeholder="Enter the date of birth" value="@Model.DOB" />
+    </div>
+    <div class="form-group pb-2">
+        <label for="Address">Address:</label>
+        <input type="text" name="Address" class="form-control" id="Address" placeholder="Enter the address" value="@Model.Address" />
+    </div>
+    <div class="form-group pb-2">
+        <label for="Email">Email:</label>
+        <input type="text" name="Email" class="form-control" id="Email" placeholder="Enter the email" value="@Model.Email" />
+    </div>
+    <div class="form-group pb-2">
+        <label for="Phone">Phone:</label>
+        <input type="text" name="Phone" class="form-control" id="Phone" placeholder="Enter the phone" value="@Model.Phone" />
     </div>
     <div>
-        <label>Lastname:</label> <input type="text" name="LastName" value="@Model.Lastname" />
+        <input type="submit" class="btn btn-success" value="Update Customer" />
     </div>
-    <div>
-        <label>Date of Birth:</label> <input type="date" name="DOB" value="@Model.DOB" />
-    </div>
-    <div>
-        <label>Address:</label> <input type="text" name="Address" value="@Model.Address" />
-    </div>
-    <div>
-        <label>Email:</label> <input type="text" name="Email" value="@Model.Email" />
-    </div>
-    <div>
-        <label>Phone:</label> <input type="text" name="Phone" value="@Model.Phone" />
-    </div>
-    <div>
-    <input type="submit" value="Update" />
-    </div>
-
 </form>

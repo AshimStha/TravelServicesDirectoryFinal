@@ -4,27 +4,37 @@
 
 <h2>Create a Package</h2>
 
+<!--Link to to back to the packages list page-->
+<a href="/Package/List">Go back to Packages list</a>
+
 <form action="/Package/Create" method="POST">
-    <div>
-        <label>Package Name:</label> <input type="text" name="PackageName" />
+    <div class="form-group pb-2">
+        <label for="PName">Package Name:</label>
+        <input type="text" name="PackageName" class="form-control" id="PName" placeholder="Enter the package name" />
     </div>
-    <div>
-        <label>Package Type:</label> <input type="text" name="PackageType" />
+    <div class="form-group pb-2">
+        <label for="PType">Package Type:</label>
+        <input type="text" name="PackageType" class="form-control" id="PType" placeholder="Enter the package type" />
     </div>
-    <div>
-        <label>Accommodation Type:</label> <input type="text" name="AccommodationType" />
+    <div class="form-group pb-2">
+        <label for="AType">Accommodation Type:</label>
+        <input type="text" name="AccommodationType" class="form-control" id="AType" placeholder="Enter the accommodation type" />
     </div>
-    <div>
-        <label>Destination:</label> <input type="text" name="Destination" />
+    <div class="form-group pb-2">
+        <label for="destination">Destination:</label>
+        <input type="text" name="Destination" class="form-control" id="destination" placeholder="Enter the destination" />
     </div>
-    <div>
-        <label>Departure Date:</label> <input type="date" name="Departure" />
+    <div class="form-group pb-2">
+        <label for="DDate">Departure Date:</label>
+        <input type="date" name="Departure" class="form-control" id="DDate" placeholder="Enter the departure date" />
     </div>
-    <div>
-        <label>Arrival Date:</label> <input type="date" name="Arrival" />
+    <div class="form-group pb-2">
+        <label for="ADate">Arrival Date:</label>
+        <input type="date" name="Arrival" class="form-control" id="ADate" placeholder="Enter the arrival date" />
     </div>
-    <div>
-        <label>Cost:</label> <input type="number" name="Cost" />
+    <div class="form-group pb-2">
+        <label for="cost">Cost:</label>
+        <input type="number" name="Cost" class="form-control" id="cost" placeholder="Enter the cost" />
     </div>
     <div>
         <input type="submit" value="Add Package" />

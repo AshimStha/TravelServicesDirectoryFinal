@@ -9,15 +9,15 @@
 <h2>Details</h2>
 
 <!--Link to to back to the customers list page-->
-<a href="/Customer/List">Go back to Customers list</a>
+<a class="btn btn-success my-3" href="/Customer/List">Go back to Customers list</a>
 
 <div class="container mt-2 mb-5">
     <div class="card w-50">
-        <h5 class="card-header"><span class="fw-bold">@Model.Firstname @Model.Lastname</span></h5>
+        <h2 class="card-header"><span class="fw-bold">@Model.Firstname @Model.Lastname</span></h2>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-8">
-                    <h5 class="card-title text-danger fs-3 pb-3"><span class="fw-bold">D.O.B:</span>@Model.DOB</h5>
+                    <p class="card-title text-danger fs-3 pb-3"><span class="fw-bold">D.O.B:</span>@Model.DOB</p>
                 </div>
 
                 <!--Delete Customer-->
@@ -32,7 +32,6 @@
             </div>
             <p class="card-text"><span class="fw-bold">Address:</span> @Model.Address</p>
             <p class="card-text"><span class="fw-bold">Email:</span> @Model.Email</p>
-            <a href="#" class="btn btn-primary">Contact</a>
         </div>
     </div>
 </div>
