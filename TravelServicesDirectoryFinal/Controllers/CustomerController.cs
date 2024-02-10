@@ -246,19 +246,29 @@ namespace TravelServicesDirectoryFinal.Controllers
             return View(selectedCustomer);
         }
 
+        /// <summary>
+        /// A function to update the details of the selected customer
+        /// </summary>
+        /// <param name="id">The customer id</param>
+        /// <param name="customer">The customer object</param>
+        /// <returns>
+        /// The list view page after updating the details
+        /// </returns>
+        /// 
+
         // POST: Customer/Update/5
         [HttpPost]
         public ActionResult Update(int id, Customer customer)
         {
             try
             {
-                Debug.WriteLine("The new customer info is:");
-                Debug.WriteLine(customer.Firstname);
-                Debug.WriteLine(customer.Lastname);
-                Debug.WriteLine(customer.DOB);
+                // Debug.WriteLine("The new customer info is:");
+                // Debug.WriteLine(customer.Firstname);
+                // Debug.WriteLine(customer.Lastname);
+                // Debug.WriteLine(customer.DOB);
 
-                //serialize into JSON
-                //Send the request to the API
+                // Serialize into JSON
+                // Send the request to the API
 
                 string url = "UpdateCustomer/" + id;
 

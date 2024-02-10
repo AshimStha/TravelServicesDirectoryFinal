@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using TravelServicesDirectoryFinal.Migrations;
 using TravelServicesDirectoryFinal.Models;
 
 namespace TravelServicesDirectoryFinal.Controllers
@@ -219,21 +221,74 @@ namespace TravelServicesDirectoryFinal.Controllers
             }
         }
 
+        /// <summary>
+        /// A function that grabs the details of the selected booking and renders the edit form view
+        /// </summary>
+        /// <param name="id">The booking to be edited</param>
+        /// <returns>
+        /// Returns the edit booking form page with the data. 
+        /// </returns>
+        /// 
+
         // GET: Booking/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            //grab the booking information
+
+            //objective: communicate with our booking data api to retrieve one booking
+            //curl https://localhost:44324/api/bookingsdata/findbooking/{id}
+
+            string url = "findbooking/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+
+            //Debug.WriteLine("The response code is ");
+            //Debug.WriteLine(response.StatusCode);
+
+            Booking selectedBooking = response.Content.ReadAsAsync<Booking>().Result;
+            //Debug.WriteLine("Booking received : ");
+            //Debug.WriteLine(selectedBooking.Status);
+
+            return View(selectedBooking);
         }
 
-        // POST: Booking/Edit/5
+        /// <summary>
+        /// A function to update the details of the selected booking
+        /// </summary>
+        /// <param name="id">The booking id</param>
+        /// <param name="booking">The booking object</param>
+        /// <returns>
+        /// The list view page after updating the details
+        /// </returns>
+        /// 
+
+        // POST: Booking/Update/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Update(int id, Booking booking)
         {
             try
             {
-                // TODO: Add update logic here
+                // Debug.WriteLine("The new package info is:");
+                // Debug.WriteLine(booking.Status);
+                // Debug.WriteLine(booking.BookingDate);
 
-                return RedirectToAction("Index");
+                // Serialize into JSON
+                // Send the request to the API
+
+                string url = "UpdateBooking/" + id;
+
+
+                string jsonpayload = jss.Serialize(booking);
+                Debug.WriteLine(jsonpayload);
+
+                HttpContent content = new StringContent(jsonpayload);
+                content.Headers.ContentType.MediaType = "application/json";
+
+                //POST: api/BookingsData/UpdateBooking/{id}
+                //Header : Content-Type: application/json
+                HttpResponseMessage response = client.PostAsync(url, content).Result;
+
+
+                return RedirectToAction("Details/" + id);
             }
             catch
             {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Web;
@@ -245,15 +246,45 @@ namespace TravelServicesDirectoryFinal.Controllers
             return View(selectedPackage);
         }
 
-        // POST: Package/Edit/5
+        /// <summary>
+        /// A function to update the details of the selected package
+        /// </summary>
+        /// <param name="id">The package id</param>
+        /// <param name="package">The package object</param>
+        /// <returns>
+        /// The list view page after updating the details
+        /// </returns>
+        /// 
+
+        // POST: Package/Update/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Update(int id, Package package)
         {
             try
             {
-                // TODO: Add update logic here
+                // Debug.WriteLine("The new package info is:");
+                // Debug.WriteLine(package.Name);
+                // Debug.WriteLine(package.Type);
+                // Debug.WriteLine(package.Destination);
 
-                return RedirectToAction("Index");
+                // Serialize into JSON
+                // Send the request to the API
+
+                string url = "UpdatePackage/" + id;
+
+
+                string jsonpayload = jss.Serialize(package);
+                Debug.WriteLine(jsonpayload);
+
+                HttpContent content = new StringContent(jsonpayload);
+                content.Headers.ContentType.MediaType = "application/json";
+
+                //POST: api/PackagesData/UpdatePackage/{id}
+                //Header : Content-Type: application/json
+                HttpResponseMessage response = client.PostAsync(url, content).Result;
+
+
+                return RedirectToAction("Details/" + id);
             }
             catch
             {

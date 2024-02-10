@@ -6,23 +6,33 @@
 
 <h2>Edit Package Details</h2>
 
-<form method="POST" action="/Animal/Update/@Model.AnimalID">
-    <input type="text" style="display:none;" name="AnimalId" value="@Model.AnimalID" />
+<form method="POST" action="/Package/Update/@Model.PkgId">
+    <input type="text" style="display:none;" name="PkgId" value="@Model.PkgId" />
     <div>
-        <label>Name</label>
-        <input type="text" name="AnimalName" value="@Model.AnimalName" />
-    </div>
-    <div>
-        <label>Weight</label>
-        <input type="text" name="AnimalWeight" value="@Model.AnimalWeight" />
-    </div>
-    <div>
-        <label>Species</label>
-        <input type="text" name="SpeciesId" value="@Model.SpeciesId" />
-    </div>
-    <div>
-
-        <input type="submit" value="Update" />
+        <div>
+            <label>Package Name:</label> <input type="text" name="PackageName" value="@Model.Name" />
+        </div>
+        <div>
+            <label>Package Type:</label> <input type="text" name="PackageType" value="@Model.Type" />
+        </div>
+        <div>
+            <label>Accommodation Type:</label> <input type="text" name="AccommodationType" value="@Model.AccommodationType" />
+        </div>
+        <div>
+            <label>Destination:</label> <input type="text" name="Destination" value="@Model.Destination" />
+        </div>
+        <div>
+            <label>Departure Date:</label> <input type="date" name="Departure" value="@Model.Departure" />
+        </div>
+        <div>
+            <label>Arrival Date:</label> <input type="date" name="Arrival" value="@Model.Arrival" />
+        </div>
+        <div>
+            <label>Cost:</label> <input type="number" name="Cost" value="@Model.Cost" />
+        </div>
+        <div>
+            <input type="submit" value="Update" />
+        </div>
     </div>
 
 </form>
