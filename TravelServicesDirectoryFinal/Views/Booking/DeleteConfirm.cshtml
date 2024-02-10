@@ -1,0 +1,28 @@
+﻿﻿<!--Using the Teacher model class-->﻿
+@model TravelServicesDirectoryFinal.Models.BookingDto
+
+@{
+    ViewBag.Title = "Confirm Delete";
+}
+
+<!--Option to delete the booking-->
+<div class="p-5 mb-4 bg-body-tertiary rounded-3">
+    <div class="container-fluid text-bg-dark rounded-3 pt-5 pb-4 ps-5">
+        <h1 class="fs-3 fw-bold pb-3 text-danger">Are you sure you want to delete this booking entry?</h1>
+        <p class="col-md-8 fs-5"><b>Package:</b>@Model.Name</p>
+        <p class="col-md-8 fs-5"><b>Customer:</b>@Model.Firstname @Model.Lastname</p>
+
+        <div class="row d-flex ">
+            <div class="col d-flex justify-content-end">
+                <form action="/Booking/Delete/@Model.BookingId" method="POST">
+                    <input class="btn btn-danger btn-m mt-4" type="submit" value="Confirm Delete" />
+                </form>
+            </div>
+            <div class="col">
+                <!--Link to go back to the bookings list-->
+                <!--The href link to the file on the project-->
+                <a class="btn btn-secondary btn-m mt-4" href="/Booking/List">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>

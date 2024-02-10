@@ -296,10 +296,22 @@ namespace TravelServicesDirectoryFinal.Controllers
             }
         }
 
-        // GET: Booking/Delete/5
-        public ActionResult Delete(int id)
+        /// <summary>
+        /// Function to show the delete confirm dialog box.
+        /// </summary>
+        /// <param name="id">The booking id to be deleted</param>
+        /// <returns>
+        /// The delete confirm dialog box.
+        /// </returns>
+        /// 
+
+        // GET: Booking/DeleteConfirm/5
+        public ActionResult DeleteConfirm(int id)
         {
-            return View();
+            string url = "bookingsdata/findbooking/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            BookingDto selectedBooking = response.Content.ReadAsAsync<BookingDto>().Result;
+            return View(selectedBooking);
         }
 
         // POST: Booking/Delete/5

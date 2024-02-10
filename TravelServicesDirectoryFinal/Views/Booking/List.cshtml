@@ -9,11 +9,15 @@
 
 <!--The container-->
 <div class="list-group">
-    <div class="row mb-5">
-        <div class="col d-flex justify-content-between">
+    <div class="row d-flex justify-content-evenly mb-5">
+        <div class="col d-flex justify-content-around">
             <!--Link to go back to the home page-->
             <a class="btn btn-success" href="/Home/Index">Home</a>
-            <!--Form to search for a teacher-->
+            <!--Link to go back to the home page-->
+            <a class="btn btn-primary" href="/Booking/New">New Booking</a>
+        </div>
+        <div class="col d-flex justify-content-between">
+            <!--Form to search for a booking entry-->
             <form class="mb-4" action="/Teacher/List" method="GET">
                 <input type="text" name="SearchKey" autocomplete="off" placeholder="Search a booking" />
                 <input type="submit" value="Search" />
@@ -24,15 +28,36 @@
     <div class="row text-center">
         <h1>Bookings List</h1>
     </div>
-    <!--Looping through every instance of a teacher-->
-    @foreach (var booking in Model)
-    {
-        <div class="list-item">
-            <!--Setting the route using the anchor tag as well as displaying the teacher details-->
-            <p class="col-md-12 list-group-item list-group-item-action w-25 text-center"><a class="text-decoration-none text-secondary" href="/Booking/Details/@booking.BookingId">@booking.Name</a></p>
-            <!--&amp;package means we are talking about the package-->
-            <p>Booked On: @booking.BookingDate</p>
-            <p>Payment Status: @booking.Status</p>
-        </div>
-    }
+
+    <div class="row d-flex">
+        <!--Table to list the booking entries-->
+        <table class="table table-striped table-bordered text-center">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Package Name</th>
+                    <th>Booked On</th>
+                    <th>Status</th>
+                    <th colspan="2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--Looping through every instance of a booking-->
+                @foreach (var booking in Model)
+                {
+                    <tr>
+                        <td>@booking.BookingId</td>
+                        <td><a class="text-decoration-none text-danger" href="/Booking/Details/@booking.BookingId">@booking.Name</a></td>
+                        <td>@booking.BookingDate</td>
+                        <td>@booking.Status</td>
+                        <!--Delete Booking-->
+                        <td><a href="/Booking/DeleteConfirm/@booking.BookingId" class="btn btn-danger">Delete</a></td>
+                        <!--Update Booking-->
+                        <td><a href="/Booking/Edit/@booking.BookingId" class="btn btn-primary">Update</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
 </div>

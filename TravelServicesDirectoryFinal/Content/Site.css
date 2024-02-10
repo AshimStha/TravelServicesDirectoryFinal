@@ -65,61 +65,6 @@ textarea {
     display: none;
 }
 
-
-/*CSS for the AJAX form*/
-body section {
-    height: auto;
-    padding: 20px 20px;
-    margin: 20px 20px;
-    background-color: bisque;
-    border: 1px dashed black;
-    border-radius: 20px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-h1 {
-    color: red;
-    font-size: 30px;
-    font-weight: bold;
-    padding: 50px 0;
-}
-
-#add-btn {
-    color: white;
-    background-color: black;
-    padding: 5px 15px;
-    border: 0px solid white;
-    border-radius: 10px;
-    margin-top: 50px;
-}
-
-    #add-btn:hover {
-        color: black;
-        background-color: white;
-        transition: 0.5s ease;
-        cursor: pointer;
-    }
-
-#update-btn {
-    color: white;
-    background-color: black;
-    padding: 5px 15px;
-    border: 0px solid white;
-    border-radius: 10px;
-    margin-top: 50px;
-}
-
-    #update-btn:hover {
-        color: black;
-        background-color: white;
-        transition: 0.5s ease;
-        cursor: pointer;
-    }
-
 /*Form*/
 #add-form {
     display: flex;
