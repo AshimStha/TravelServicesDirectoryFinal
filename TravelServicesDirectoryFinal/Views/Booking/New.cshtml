@@ -1,0 +1,34 @@
+﻿<!--Defining the BookingDto model-->
+@model TravelServicesDirectoryFinal.Models.BookingDto
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create a Booking</h2>
+
+<form action="/Booking/Create" method="POST">
+    <div>
+        <label>Status:</label> <input type="text" name="Status" />
+    </div>
+    <div>
+        <label>Booking Date:</label> <input type="date" name="BookingDate" />
+    </div>
+    <div>
+        <label>Grand Total:</label> <input type="text" name="GrandTotal" />
+    </div>
+    <!--For the package and customer IDs, we can have the feature of selecting the available IDs from a dropdown menu in the future
+        iteration of this application. Since, the users will not have the access to our DB, it can be considered an extra feature to make it 
+        dynamic.-->
+    <!--For now, we need to add a new data entry in both the tables that have no association with the booking entity and then can provide
+        the IDs in these input fields respecting the FK relationships.-->
+    <div>
+        <label>Package ID:</label> <input type="number" name="PkgId" />
+    </div>
+    <div>
+        <label>Customer ID:</label> <input type="number" name="CustomerId" />
+    </div>
+    <div>
+        <input type="submit" value="Add Booking" />
+    </div>
+</form>

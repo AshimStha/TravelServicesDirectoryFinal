@@ -1,0 +1,19 @@
+﻿<!--Defining the Booking model-->
+<!--Was changed to BookingDto to access the bookings data-->
+@model TravelServicesDirectoryFinal.Models.BookingDto
+
+@{
+    ViewBag.Title = "Booking Details";
+}
+
+<h2>Details</h2>
+
+<!--Link to to back to the bookings list page-->
+<a href="/Booking/List">Go back to Bookings list</a>
+<h2>@Model.Name</h2>
+<div>Package Type: @Model.Type</div>
+<div>Firstname: @Model.Firstname</div>
+<div>Lastname: @Model.Lastname</div>
+<div>Status: @Model.Status</div>
+<div>Booked On: @Model.BookingDate</div>
+<div>Grand Total: @Model.GrandTotal</div>

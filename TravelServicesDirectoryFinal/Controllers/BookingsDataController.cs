@@ -126,7 +126,7 @@ namespace TravelServicesDirectoryFinal.Controllers
                "BookingId": 6,
                "Status": "Paid",
                "BookingDate": "12/03/2023",
-               "GrandTotal": "1250",
+               "GrandTotal": "2000",
                "PkgId": "2",
                "CustomerId": "6"
            }

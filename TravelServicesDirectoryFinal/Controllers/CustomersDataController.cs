@@ -17,18 +17,23 @@ namespace TravelServicesDirectoryFinal.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        /*
-         * A function to list the customers present in the database.
-         * It uses the Customer and CustomerDto model classes to access the data.
-         * 
-         * GET: curl https://localhost:44375/api/CustomersData/ListCustomers
-         * 
-         * Result:
-         * 
-         * [{"CustomerId":1,"Firstname":"Christine","Lastname":"Bittle","DOB":"1999-12-28T00:00:00","Address":"29 uber Road",
-         * "Email":"Christine@gmail.com","Phone":"123-456-7890"},{"CustomerId":2,"Firstname":"Ashim","Lastname":"Test",
-         * "DOB":"1987-12-21T00:00:00","Address":"165 boley road","Email":"ashim@gmail.com","Phone":"121-234-2213"}]
-         */
+        /// <summary>
+        /// A function to list the customers present in the database.
+        /// It uses the Customer and CustomerDto model classes to access the data.
+        /// </summary>
+        /// 
+        /// <example>
+        /// GET: curl https://localhost:44375/api/CustomersData/ListCustomers
+        /// </example>
+        /// 
+        /// <returns>
+        /// The list of customers in the system db.
+        /// 
+        /// [{"CustomerId":1,"Firstname":"Christine","Lastname":"Bittle","DOB":"1999-12-28T00:00:00","Address":"29 uber Road",
+        /// "Email":"Christine@gmail.com","Phone":"123-456-7890"},{"CustomerId":2,"Firstname":"Ashim","Lastname":"Test",
+        /// "DOB":"1987-12-21T00:00:00","Address":"165 boley road","Email":"ashim@gmail.com","Phone":"121-234-2213"}]
+        /// </returns>
+        /// 
 
         // GET: api/CustomersData/ListCustomers
         [HttpGet]
@@ -51,18 +56,23 @@ namespace TravelServicesDirectoryFinal.Controllers
             return CustomerDtos;
         }
 
-        /*
-         * A function to find a specific customer from the database using the id.
-         * It uses the Customer and CustomerDto model classes to access the data.
-         * 
-         * GET: curl https://localhost:44375/api/CustomersData/FindCustomer/2
-         * 
-         * Result:
-         * 
-         * {"CustomerId":2,"Firstname":"Ashim","Lastname":"Test","DOB":"1987-12-21T00:00:00","Address":"165 boley road",
-         * "Email":"ashim@gmail.com","Phone":"121-234-2213"}
-         * 
-         */
+        /// <summary>
+        /// A function to find a specific customer from the database using the id.
+        /// It uses the Customer and CustomerDto model classes to access the data.
+        /// </summary>
+        /// 
+        /// <example>
+        /// GET: curl https://localhost:44375/api/CustomersData/FindCustomer/2
+        /// </example>
+        /// 
+        /// <param name="id">The customer id</param>
+        /// 
+        /// <returns>
+        /// The searched customer details.
+        /// 
+        /// {"CustomerId":2,"Firstname":"Ashim","Lastname":"Test","DOB":"1987-12-21T00:00:00","Address":"165 boley road",
+        ///"Email":"ashim@gmail.com","Phone":"121-234-2213"}
+        /// </returns>
 
         // GET: api/CustomersData/FindCustomer/2
         [ResponseType(typeof(Customer))]
@@ -90,45 +100,45 @@ namespace TravelServicesDirectoryFinal.Controllers
             return Ok(CustomerDto);
         }
 
-        /*
-         * A function to update a specific customer from the database using the id.
-         * It uses the Customer model class to access the data and has the id and customer object as parameters.
-         * 
-         * To use this file as post data,
-         *  - Navigate to the root folder
-         *  - Copy the file path as text
-         *  - Provide the path in the curl request
-         *  - cd into that directory
-         * 
-         * To use the curl request method
-         * 
-         * POST: curl -d @customers.json -H "Content-type:application/json" https://localhost:44375/api/CustomersData/UpdateCustomer/6
-         * 
-         * The file name only method was not working. Used the relative path to the file.
-         * 
-         * curl -d @C:\Users\Asus\source\repos\TravelServicesDirectoryFinal\TravelServicesDirectoryFinal\jsondata\customers.json -H "Content-type:application/json" https://localhost:44375/api/CustomersData/UpdateCustomer/6
-         * 
-         * Here, @customers.json is the post data that is passed with the request while -H is the header type for the request.
-         * 
-         *  -> -d is the post data
-         *  -> -H is the information for the type of content we are sending
-         *  
-         *  JSON Data for the update (To add, just remove the id attribute)
-         *  {
-                "CustomerId": 6,
-                "Firstname": "Daniel",
-                "Lastname": "Bryan",
-                "DOB": "11/12/1991",
-                "Address": "87 Chimichangas Street",
-                "Email": "Daniel@gmail.com",
-                "Phone": "122-352-0000"
-            }
-         * 
-         * Result:
-         * 
-         * The customer data in the local database is updated.
-         * 
-         */
+        /// <summary>
+        /// A function to update a specific customer from the database using the id.
+        /// It uses the Customer model class to access the data and has the id and customer object as parameters.
+        /// 
+        /// To use this file as post data,
+        ///     - Navigate to the root folder
+        ///     - Copy the file path as text
+        ///     - Provide the path in the curl request
+        ///     - cd into that directory
+        ///     
+        /// To use the curl request method
+        /// POST: curl -d @customers.json -H "Content-type:application/json" https://localhost:44375/api/CustomersData/UpdateCustomer/6
+        /// 
+        /// The file name only method was not working. Used the relative path to the file.
+        /// curl -d @C:\Users\Asus\source\repos\TravelServicesDirectoryFinal\TravelServicesDirectoryFinal\jsondata\customers.json -H "Content-type:application/json" https://localhost:44375/api/CustomersData/UpdateCustomer/6
+        /// 
+        /// Here, @customers.json is the post data that is passed with the request while -H is the header type for the request.
+        /// -> -d is the post data
+        /// -> -H is the information for the type of content we are sending
+        /// 
+        /// JSON Data for the update (To add, just remove the id attribute)
+        /// {
+        ///     "CustomerId": 6,
+        ///     "Firstname": "Daniel",
+        ///     "Lastname": "Bryan",
+        ///     "DOB": "11/12/1991",
+        ///     "Address": "87 Chimichangas Street",
+        ///     "Email": "Daniel@gmail.com",
+        //      "Phone": "122-352-0000"
+        /// }
+        /// </summary>
+        /// 
+        /// <param name="id">The customer id</param>
+        /// <param name="customer">The customer model object</param>
+        /// 
+        /// <returns>
+        /// The customer data in the local database is updated.
+        /// </returns>
+        /// 
 
         // POST: api/CustomersData/UpdateCustomer/6
         [ResponseType(typeof(void))]
@@ -168,41 +178,41 @@ namespace TravelServicesDirectoryFinal.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        /*
-         * A function to add a new customer to the system.
-         * It uses the Customer model class to add a new entry.
-         * 
-         * To use this file as post data,
-         *  - Navigate to the root folder
-         *  - Copy the file path as text
-         *  - Provide the path in the curl request
-         *  - cd into that directory
-         * 
-         * To use the curl request method
-         * 
-         * POST: curl -d @customers.json -H "Content-type:application/json" https://localhost:44375/api/CustomersData/AddCustomer
-         * 
-         * The file name only method was not working. Used the relative path to the file.
-         * 
-         * curl -d @C:\Users\Asus\source\repos\TravelServicesDirectoryFinal\TravelServicesDirectoryFinal\jsondata\customers.json -H 
-         * "Content-type:application/json" https://localhost:44375/api/CustomersData/AddCustomer
-         * 
-         * Here, @customers.json is the post data that is passed with the request while -H is the header type for the request.
-         * 
-         *  -> -d is the post data
-         *  -> -H is the information for the type of content we are sending
-         * 
-         * After, adding one entry, we can just change the values from the json data below and keep adding more entries.
-         * This json data can serve as the post data when we try to add a new customer
-         * 
-         * Result: 
-         * 
-         * A new customer is added to the system's database.
-         * 
-         * {"CustomerId":5,"Firstname":"Steve","Lastname":"Rogers","DOB":"1989-12-03T00:00:00","Address":"102 Borack Road",
-         * "Email":"Steve@gmail.com","Phone":"122-352-1223"}
-         * 
-         */
+        /// <summary>
+        /// A function to add a new customer to the system.
+        /// It uses the Customer model class to add a new entry.
+        ///     
+        /// To use the curl request method
+        /// POST: curl -d @customers.json -H "Content-type:application/json" https://localhost:44375/api/CustomersData/AddCustomer
+        /// 
+        /// The file name only method was not working. Used the relative path to the file.
+        /// curl -d @C:\Users\Asus\source\repos\TravelServicesDirectoryFinal\TravelServicesDirectoryFinal\jsondata\customers.json -H "Content-type:application/json" https://localhost:44375/api/CustomersData/AddCustomer
+        /// 
+        /// Here, @customers.json is the post data that is passed with the request while -H is the header type for the request.
+        /// -> -d is the post data
+        /// -> -H is the information for the type of content we are sending
+        /// 
+        /// After, adding one entry, we can just change the values from the json data below and keep adding more entries.
+        /// This json data can serve as the post data when we try to add a new customer.
+        /// 
+        /// {
+        ///     "Firstname": "Daniel",
+        ///     "Lastname": "Bryan",
+        ///     "DOB": "11/12/1991",
+        ///     "Address": "87 Chimichangas Street",
+        ///     "Email": "Daniel@gmail.com",
+        //      "Phone": "122-352-0000"
+        /// }
+        /// </summary>
+        /// 
+        /// <param name="customer">The customer model object</param>
+        /// 
+        /// <returns>
+        /// A new customer is added to the system's database.
+        ///
+        /// {"CustomerId":5,"Firstname":"Steve","Lastname":"Rogers","DOB":"1989-12-03T00:00:00","Address":"102 Borack Road",
+        /// "Email":"Steve@gmail.com","Phone":"122-352-1223"}
+        /// </returns>
 
         // POST: api/CustomersData/AddCustomer
         [ResponseType(typeof(Customer))]
@@ -220,19 +230,23 @@ namespace TravelServicesDirectoryFinal.Controllers
             return CreatedAtRoute("DefaultApi", new { id = customer.CustomerId }, customer);
         }
 
-        /*
-         * A function to delete a specific customer from the database using the id.
-         * It uses the Customer model class to delete the data.
-         * 
-         * POST: curl -d "" https://localhost:44375/api/CustomersData/DeleteCustomer/3
-         * 
-         * Here, "" is the post data and it being empty means no post data was passed.
-         * 
-         * Result: 
-         * 
-         * The selected data entry with the id is deleted from the database.
-         * 
-         */
+        /// <summary>
+        /// A function to delete a specific customer from the database using the id.
+        /// It uses the Customer model class to delete the data.
+        /// </summary>
+        /// 
+        /// <example>
+        /// POST: curl -d "" https://localhost:44375/api/CustomersData/DeleteCustomer/3
+        /// 
+        /// Here, "" is the post data and it being empty means no post data was passed.
+        /// </example>
+        /// 
+        /// <param name="id">The customer id</param>
+        /// 
+        /// <returns>
+        /// The selected data entry with the id is deleted from the database.
+        /// </returns>
+        /// 
 
         // POST: api/CustomersData/DeleteCustomer/3
         [ResponseType(typeof(Customer))]

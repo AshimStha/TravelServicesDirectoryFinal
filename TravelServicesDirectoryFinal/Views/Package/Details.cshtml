@@ -1,0 +1,19 @@
+﻿<!--Defining the Package model-->
+<!--Was changed to PackageDto to access the packages data-->
+@model TravelServicesDirectoryFinal.Models.PackageDto
+
+@{
+    ViewBag.Title = "Package Details";
+}
+
+<h2>Details</h2>
+
+<!--Link to to back to the packages list page-->
+<a href="/Package/List">Go back to Packages list</a>
+<h2>@Model.Name</h2>
+<div>Package Type: @Model.Type</div>
+<div>Accommodation Type: @Model.AccommodationType</div>
+<div>Destination: @Model.Destination</div>
+<div>Departure Date: @Model.Departure</div>
+<div>Arrival Date: @Model.Arrival</div>
+<div>Cost: @Model.Cost</div>

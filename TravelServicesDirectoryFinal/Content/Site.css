@@ -18,3 +18,146 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+
+/* CSS for the index page cards */
+.card {
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+    .card:hover {
+        transform: scale(1.05);
+    }
+
+
+/* CSS for the index page */
+.content {
+    padding: 20px;
+}
+
+.search-container {
+    padding: 20px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.search-options {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+    .search-options li {
+        margin-bottom: 5px;
+    }
+
+
+/*CSS for the error messages in form*/
+.errorMsg {
+    color: red;
+    font-weight: bold;
+    display: none;
+}
+
+
+/*CSS for the AJAX form*/
+body section {
+    height: auto;
+    padding: 20px 20px;
+    margin: 20px 20px;
+    background-color: bisque;
+    border: 1px dashed black;
+    border-radius: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    color: red;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 50px 0;
+}
+
+#add-btn {
+    color: white;
+    background-color: black;
+    padding: 5px 15px;
+    border: 0px solid white;
+    border-radius: 10px;
+    margin-top: 50px;
+}
+
+    #add-btn:hover {
+        color: black;
+        background-color: white;
+        transition: 0.5s ease;
+        cursor: pointer;
+    }
+
+#update-btn {
+    color: white;
+    background-color: black;
+    padding: 5px 15px;
+    border: 0px solid white;
+    border-radius: 10px;
+    margin-top: 50px;
+}
+
+    #update-btn:hover {
+        color: black;
+        background-color: white;
+        transition: 0.5s ease;
+        cursor: pointer;
+    }
+
+/*Form*/
+#add-form {
+    display: flex;
+    flex-direction: column;
+    border: 0px solid black;
+    border-radius: 20px;
+    padding: 20px 20px;
+    align-items: start;
+    background-color: rgb(180, 178, 178);
+}
+
+#update-form {
+    display: flex;
+    flex-direction: column;
+    border: 0px solid black;
+    border-radius: 20px;
+    padding: 20px 20px;
+    align-items: start;
+    background-color: rgb(180, 178, 178);
+}
+
+#add-form .form-input {
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+    #add-form .form-input > label {
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+
+    #add-form .form-input > input {
+        font-size: 16px;
+        width: 100%;
+        padding: 5px 5px;
+        border: 0px;
+        border-radius: 10px;
+    }

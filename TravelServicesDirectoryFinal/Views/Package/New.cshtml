@@ -1,0 +1,35 @@
+﻿<!--Defining the PackageDto model-->
+@model TravelServicesDirectoryFinal.Models.PackageDto
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create a Package</h2>
+
+<form action="/Package/Create" method="POST">
+    <div>
+        <label>Package Name:</label> <input type="text" name="PackageName" />
+    </div>
+    <div>
+        <label>Package Type:</label> <input type="text" name="PackageType" />
+    </div>
+    <div>
+        <label>Accommodation Type:</label> <input type="text" name="AccommodationType" />
+    </div>
+    <div>
+        <label>Destination:</label> <input type="text" name="Destination" />
+    </div>
+    <div>
+        <label>Departure Date:</label> <input type="date" name="Departure" />
+    </div>
+    <div>
+        <label>Arrival Date:</label> <input type="date" name="Arrival" />
+    </div>
+    <div>
+        <label>Cost:</label> <input type="number" name="Cost" />
+    </div>
+    <div>
+        <input type="submit" value="Add Package" />
+    </div>
+</form>

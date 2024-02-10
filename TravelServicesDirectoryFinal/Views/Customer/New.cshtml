@@ -1,0 +1,32 @@
+﻿<!--Defining the CustomerDto model-->
+@model TravelServicesDirectoryFinal.Models.CustomerDto
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create Customer</h2>
+
+<form action="/Customer/Create" method="POST">
+    <div>
+        <label>Firstname:</label> <input type="text" name="FirstName" />
+    </div>
+    <div>
+        <label>Lastname:</label> <input type="text" name="LastName" />
+    </div>
+    <div>
+        <label>Date of Birth:</label> <input type="date" name="DOB" />
+    </div>
+    <div>
+        <label>Address:</label> <input type="text" name="Address" />
+    </div>
+    <div>
+        <label>Email:</label> <input type="text" name="Email" />
+    </div>
+    <div>
+        <label>Phone:</label> <input type="text" name="Phone" />
+    </div>
+    <div>
+        <input type="submit" value="Add Customer" />
+    </div>
+</form>

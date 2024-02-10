@@ -1,0 +1,38 @@
+﻿<!--Defining the Booking model as an IEnumerable list-->
+<!--Was changed to BookingDto to access the packages data-->
+@model IEnumerable<TravelServicesDirectoryFinal.Models.BookingDto>
+
+@{
+    ViewBag.Title = "Bookings";
+}
+
+
+<!--The container-->
+<div class="list-group">
+    <div class="row mb-5">
+        <div class="col d-flex justify-content-between">
+            <!--Link to go back to the home page-->
+            <a class="btn btn-success" href="/Home/Index">Home</a>
+            <!--Form to search for a teacher-->
+            <form class="mb-4" action="/Teacher/List" method="GET">
+                <input type="text" name="SearchKey" autocomplete="off" placeholder="Search a booking" />
+                <input type="submit" value="Search" />
+            </form>
+        </div>
+    </div>
+
+    <div class="row text-center">
+        <h1>Bookings List</h1>
+    </div>
+    <!--Looping through every instance of a teacher-->
+    @foreach (var booking in Model)
+    {
+        <div class="list-item">
+            <!--Setting the route using the anchor tag as well as displaying the teacher details-->
+            <p class="col-md-12 list-group-item list-group-item-action w-25 text-center"><a class="text-decoration-none text-secondary" href="/Booking/Details/@booking.BookingId">@booking.Name</a></p>
+            <!--&amp;package means we are talking about the package-->
+            <p>Booked On: @booking.BookingDate</p>
+            <p>Payment Status: @booking.Status</p>
+        </div>
+    }
+</div>

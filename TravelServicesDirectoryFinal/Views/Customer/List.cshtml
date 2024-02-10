@@ -1,0 +1,18 @@
+﻿<!--Defining the Customer model as an IEnumerable list-->
+<!--Was changed to CustomerDto to access the customers data-->
+@model IEnumerable<TravelServicesDirectoryFinal.Models.CustomerDto>
+
+@{
+    ViewBag.Title = "Customers";
+}
+
+<h2>Customers List</h2>
+
+<!--For each customers in our model-->
+@foreach (var customer in Model)
+{
+    // The a tag leads to the customer details page
+    <h2><a href="/Customer/Details/@customer.CustomerId">@customer.Firstname @customer.Lastname</a></h2>
+    // @customer means we are talking about the customer
+    <div>Email: @customer.Email</div>
+}

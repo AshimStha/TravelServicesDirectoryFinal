@@ -1,0 +1,16 @@
+﻿<!--Defining the Customer model-->
+<!--Was changed to CustomerDto to access the customers data-->
+@model TravelServicesDirectoryFinal.Models.CustomerDto
+
+@{
+    ViewBag.Title = "Customer Details";
+}
+
+<h2>Details</h2>
+
+<!--Link to to back to the customers list page-->
+<a href="/Customer/List">Go back to Customers list</a>
+<h2>@Model.Firstname @Model.Lastname</h2>
+<div>D.O.B: @Model.DOB</div>
+<div>Address: @Model.Address</div>
+<div>Email: @Model.Email</div>

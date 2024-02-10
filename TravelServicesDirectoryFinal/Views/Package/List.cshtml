@@ -1,0 +1,18 @@
+﻿<!--Defining the Package model as an IEnumerable list-->
+<!--Was changed to PackageDto to access the packages data-->
+@model IEnumerable<TravelServicesDirectoryFinal.Models.PackageDto>
+
+@{
+    ViewBag.Title = "Packages";
+}
+
+<h2>Packages List</h2>
+
+<!--For each packages in our model-->
+@foreach (var package in Model)
+{
+    // The a tag leads to the package details page
+    <h2><a href="/Package/Details/@package.PkgId">@package.Name</a></h2>
+    // @package means we are talking about the package
+    <div>Cost: @package.Cost</div>
+}
