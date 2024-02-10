@@ -216,21 +216,65 @@ namespace TravelServicesDirectoryFinal.Controllers
             }
         }
 
+        /// <summary>
+        /// A function that grabs the details of the selected customer and renders the edit form view
+        /// </summary>
+        /// <param name="id">The customer to be edited</param>
+        /// <returns>
+        /// Returns the edit customer form page with the data. 
+        /// </returns>
+        /// 
+
         // GET: Customer/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            //grab the customer information
+
+            //objective: communicate with our customer data api to retrieve one customer
+            //curl https://localhost:44324/api/customersdata/findcustomer/{id}
+
+            string url = "findcustomer/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+
+            //Debug.WriteLine("The response code is ");
+            //Debug.WriteLine(response.StatusCode);
+
+            CustomerDto selectedCustomer = response.Content.ReadAsAsync<CustomerDto>().Result;
+            //Debug.WriteLine("Customer received : ");
+            //Debug.WriteLine(selectedCustomer.Firstname);
+
+            return View(selectedCustomer);
         }
 
-        // POST: Customer/Edit/5
+        // POST: Customer/Update/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Update(int id, Customer customer)
         {
             try
             {
-                // TODO: Add update logic here
+                Debug.WriteLine("The new customer info is:");
+                Debug.WriteLine(customer.Firstname);
+                Debug.WriteLine(customer.Lastname);
+                Debug.WriteLine(customer.DOB);
 
-                return RedirectToAction("Index");
+                //serialize into JSON
+                //Send the request to the API
+
+                string url = "UpdateCustomer/" + id;
+
+
+                string jsonpayload = jss.Serialize(customer);
+                Debug.WriteLine(jsonpayload);
+
+                HttpContent content = new StringContent(jsonpayload);
+                content.Headers.ContentType.MediaType = "application/json";
+
+                //POST: api/CustomersData/UpdateCustomer/{id}
+                //Header : Content-Type: application/json
+                HttpResponseMessage response = client.PostAsync(url, content).Result;
+
+
+                return RedirectToAction("Details/" + id);
             }
             catch
             {

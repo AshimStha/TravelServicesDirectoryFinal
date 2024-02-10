@@ -301,6 +301,9 @@
     <Content Include="Views\Customer\Error.cshtml" />
     <Content Include="Views\Booking\Error.cshtml" />
     <Content Include="Views\Package\Error.cshtml" />
+    <Content Include="Views\Package\Edit.cshtml" />
+    <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Booking\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

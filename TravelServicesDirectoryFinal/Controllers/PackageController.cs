@@ -162,7 +162,7 @@ namespace TravelServicesDirectoryFinal.Controllers
         /// </summary>
         /// <param name="package">The package object to be added</param>
         /// <returns>
-        /// Creates a new package and redirects to the package list view.
+        /// Creates a new package and redirects to the packages list view.
         /// </returns>
         /// 
 
@@ -171,7 +171,7 @@ namespace TravelServicesDirectoryFinal.Controllers
         public ActionResult Create(Package package)
         {
             // Debug.WriteLine("the JSON payload is :");
-            // Debug.WriteLine(package.Name);
+            // Debug.WriteLine(booking.Name);
 
             // objective: To add a new package into the system using the API
 
@@ -188,7 +188,7 @@ namespace TravelServicesDirectoryFinal.Controllers
             /*
              * We are using JS serializer to convert the Package C# object into a JSON string.
              * 
-             * The line below means the json payload for our js serializer is the package object.
+             * The line below means the json payload for our js serializer is the booking object.
              */
             string jsonpayload = jss.Serialize(package);
             // the payload data was displayed in the output
@@ -215,10 +215,34 @@ namespace TravelServicesDirectoryFinal.Controllers
             }
         }
 
+        /// <summary>
+        /// A function that grabs the details of the selected package and renders the edit form view
+        /// </summary>
+        /// <param name="id">The package to be edited</param>
+        /// <returns>
+        /// Returns the edit package form page with the data. 
+        /// </returns>
+        /// 
+
         // GET: Package/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            //grab the package information
+
+            //objective: communicate with our package data api to retrieve one package
+            //curl https://localhost:44324/api/packagesdata/findpackage/{id}
+
+            string url = "findpackage/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+
+            //Debug.WriteLine("The response code is ");
+            //Debug.WriteLine(response.StatusCode);
+
+            PackageDto selectedPackage = response.Content.ReadAsAsync<PackageDto>().Result;
+            //Debug.WriteLine("Package received : ");
+            //Debug.WriteLine(selectedPackage.Name);
+
+            return View(selectedPackage);
         }
 
         // POST: Package/Edit/5
