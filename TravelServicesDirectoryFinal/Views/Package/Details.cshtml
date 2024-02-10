@@ -10,10 +10,30 @@
 
 <!--Link to to back to the packages list page-->
 <a href="/Package/List">Go back to Packages list</a>
-<h2>@Model.Name</h2>
-<div>Package Type: @Model.Type</div>
-<div>Accommodation Type: @Model.AccommodationType</div>
-<div>Destination: @Model.Destination</div>
-<div>Departure Date: @Model.Departure</div>
-<div>Arrival Date: @Model.Arrival</div>
-<div>Cost: @Model.Cost</div>
+
+<div class="container mt-2 mb-5">
+    <div class="card w-50">
+        <h5 class="card-header"><span class="fw-bold">@Model.Name</span></h5>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <h5 class="card-title text-danger fs-3 pb-3"><span class="fw-bold">Package Type:</span>@Model.Type</h5>
+                </div>
+
+                <!--Delete Package-->
+                <div class="col-md-2 d-flex justify-content-end align-items-center">
+                    <a href="/Package/DeleteConfirm/@Model.PkgId" class="btn btn-danger">Delete</a>
+                </div>
+
+                <!--Update Package-->
+                <div class="col-md-2 d-flex justify-content-start align-items-center">
+                    <a href="/Package/Edit/@Model.PkgId" class="btn btn-primary">Update</a>
+                </div>
+            </div>
+            <p class="card-text"><span class="fw-bold">Destination:</span> @Model.Destination</p>
+            <p class="card-text"><span class="fw-bold">Departure Date:</span> @Model.Departure</p>
+            <p class="card-text"><span class="fw-bold">Arrival Date:</span> @Model.Arrival</p>
+            <p class="card-text"><span class="fw-bold">Cost:</span> @Model.Cost</p>
+        </div>
+    </div>
+</div>

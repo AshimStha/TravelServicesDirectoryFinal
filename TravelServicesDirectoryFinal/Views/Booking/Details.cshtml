@@ -10,10 +10,31 @@
 
 <!--Link to to back to the bookings list page-->
 <a href="/Booking/List">Go back to Bookings list</a>
-<h2>@Model.Name</h2>
-<div>Package Type: @Model.Type</div>
-<div>Firstname: @Model.Firstname</div>
-<div>Lastname: @Model.Lastname</div>
-<div>Status: @Model.Status</div>
-<div>Booked On: @Model.BookingDate</div>
-<div>Grand Total: @Model.GrandTotal</div>
+
+<div class="container mt-2 mb-5">
+    <div class="card w-50">
+        <h5 class="card-header"><span class="fw-bold">@Model.Name</span></h5>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <h5 class="card-title text-danger fs-3 pb-3"><span class="fw-bold">Package Type:</span>@Model.Type</h5>
+                </div>
+
+                <!--Delete Package-->
+                <div class="col-md-2 d-flex justify-content-end align-items-center">
+                    <a href="/Booking/DeleteConfirm/@Model.BookingId" class="btn btn-danger">Delete</a>
+                </div>
+
+                <!--Update Package-->
+                <div class="col-md-2 d-flex justify-content-start align-items-center">
+                    <a href="/Booking/Edit/@Model.BookingId" class="btn btn-primary">Update</a>
+                </div>
+            </div>
+            <p class="card-text"><span class="fw-bold">Firstname:</span> @Model.Firstname</p>
+            <p class="card-text"><span class="fw-bold">Lastname:</span> @Model.Lastname</p>
+            <p class="card-text"><span class="fw-bold">Status:</span> @Model.Status</p>
+            <p class="card-text"><span class="fw-bold">Booked On:</span> @Model.BookingDate</p>
+            <p class="card-text"><span class="fw-bold">Grand Total:</span> @Model.GrandTotal</p>
+        </div>
+    </div>
+</div>
