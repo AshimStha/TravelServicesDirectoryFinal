@@ -314,19 +314,30 @@ namespace TravelServicesDirectoryFinal.Controllers
             return View(selectedBooking);
         }
 
+        /// <summary>
+        /// Function to delete the selected booking entry.
+        /// </summary>
+        /// <param name="id">The booking id</param>
+        /// <returns>
+        /// The list of bookings if successful else, the error view page.
+        /// </returns>
+
         // POST: Booking/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            string url = "deletebooking/" + id;
+            HttpContent content = new StringContent("");
+            content.Headers.ContentType.MediaType = "application/json";
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if (response.IsSuccessStatusCode)
             {
-                return View();
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return RedirectToAction("Error");
             }
         }
     }
