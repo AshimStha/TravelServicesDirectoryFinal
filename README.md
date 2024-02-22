@@ -3,12 +3,20 @@
 Travel Services directory is a data logging web application made to provide users with comprehensive information about their travels. It has been built to aid travel companies to keep record of the bookings made by customers and also
 provide them the travel services that includes accommodation, expense details, and the purpose for travel. This application aims to make travel planning easier by acting as a single hub for all the requirements. 
 
+---
+
 ## Features
 
 - CRUD Operations: There are 3 tables in this application and all of them have been provided with the major CRUD functions. The features to create, read, update and delete the entries for each entities have been added in the system.
 - Tabular relationship: There exists a many to many relationship between the major tables which are Customer and Package which led to the creation of a third bridging table calle 'Booking' that joins the major tables.
 - ViewModels: In order to make the application more convenient and practical, the concept of viewModels have been used for efficient data sharing among the model classes.
 - Views: The application has a neat and proper user interface for ease of use to the users.
+
+### ERD
+
+![Entity Relationship Diagram](ERD.png)
+
+---
 
 ## Technologies Used
 
@@ -18,6 +26,7 @@ provide them the travel services that includes accommodation, expense details, a
 - HTML/Bootstrap: Frontend development is done using HTML and Bootstrap, ensuring a visually appealing and interactive user interface.
 - SQL Server Object Explorer: SQL SOE is used as the relational database management system for storing and managing application data efficiently.
 
+---
 
 ## Installation
 
@@ -43,6 +52,8 @@ Follow these steps to install the project:
    update-database
 
 6. Step 6: Run the application
+
+---
 
 ## Contribution Guidelines
 
