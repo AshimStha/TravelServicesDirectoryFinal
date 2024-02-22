@@ -58,13 +58,6 @@ textarea {
     }
 
 
-/*CSS for the error messages in form*/
-.errorMsg {
-    color: red;
-    font-weight: bold;
-    display: none;
-}
-
 /*Form*/
 #add-form {
     display: flex;
@@ -110,3 +103,22 @@ textarea {
 .bkng_home_btn, .bkng_new_btn {
     padding: 0.375rem 0.75rem;
 }
+
+/*Customers details page*/
+.cust_details .bkng_details #customers_total_bkng {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
+
+.cust_details .bkng_details #customers_total_bkng .total_p {
+    width: 100%;
+    background-color: rgb(234, 232, 243);
+    color: red;
+    border-radius: 8px;
+}
+
+    .cust_details .bkng_details #customers_total_bkng p, ul {
+        width: 100%;
+    }

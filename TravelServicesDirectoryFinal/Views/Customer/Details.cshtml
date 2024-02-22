@@ -1,40 +1,54 @@
 ﻿<!--Defining the Customer model-->
-<!--Was changed to CustomerDto to access the customers data-->
-@model TravelServicesDirectoryFinal.Models.CustomerDto
+<!--Was changed to CustomerDto to access the customers data. Again, changed to the new view model class.-->
+<!--TravelServicesDirectoryFinal.Models.CustomerDto-- >
+@model TravelServicesDirectoryFinal.Models.ViewModels.DetailsCustomer
 
 @{
     ViewBag.Title = "Customer Details";
 }
 
-<h2>Details</h2>
+<h2>Customer Details</h2>
 
-<!--Link to to back to the customers list page-->
+<!--Link to go back to the customers list page-->
 <a class="btn btn-success my-3" href="/Customer/List">Go back to Customers list</a>
 
-<div class="container mt-2 mb-5">
-    <div class="card w-50">
-        <h2 class="card-header"><span class="fw-bold">@Model.Firstname @Model.Lastname</span></h2>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-8">
-                    <p class="card-title text-danger fs-5 pb-3"><span class="fw-bold">D.O.B:</span>@Model.DOB</p>
-                </div>
+<div class="container mt-2 mb-5 cust_details">
+    <div class="col">
+        <div class="card w-50">
+            <h2 class="card-header text-danger"><span class="fw-bold">@Model.SelectedCustomer.Firstname @Model.SelectedCustomer.Lastname</span></h2>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <p class="card-title fs-5 pb-3"><span class="fw-bold">D.O.B: </span>@Model.SelectedCustomer.DOB</p>
+                    </div>
 
-                <!--Delete Customer-->
-                <div class="col-md-2 d-flex justify-content-end align-items-center">
-                    <a href="/Customer/DeleteConfirm/@Model.CustomerId" class="btn btn-danger">Delete</a>
-                </div>
+                    <!--Delete Customer-->
+                    <div class="col-md-2 d-flex justify-content-end align-items-center">
+                        <a href="/Customer/DeleteConfirm/@Model.SelectedCustomer.CustomerId" class="btn btn-danger">Delete</a>
+                    </div>
 
-                <!--Update Customer-->
-                <div class="col-md-2 d-flex justify-content-start align-items-center">
-                    <a href="/Customer/Edit/@Model.CustomerId" class="btn btn-primary">Update</a>
+                    <!--Update Customer-->
+                    <div class="col-md-2 d-flex justify-content-start align-items-center">
+                        <a href="/Customer/Edit/@Model.SelectedCustomer.CustomerId" class="btn btn-primary">Update</a>
+                    </div>
                 </div>
+                <p class="card-text"><span class="fw-bold">Address:</span> @Model.SelectedCustomer.Address</p>
+                <p class="card-text"><span class="fw-bold">Email:</span> @Model.SelectedCustomer.Email</p>
             </div>
-            <p class="card-text"><span class="fw-bold">Address:</span> @Model.Address</p>
-            <p class="card-text"><span class="fw-bold">Email:</span> @Model.Email</p>
         </div>
     </div>
-    <div class="card w-50 text-center d-flex align-items-center">
-        <p class="fs-4 fw-bold">Total bookings:  bookings</p>
+
+    <div class="col bkng_details">
+        <div class="w-50 text-center d-flex align-items-center mt-5" id="customers_total_bkng">
+            <p class="fs-4 fw-bold total_p">Total bookings:  bookings</p>
+            <p class="fs-6">@Model.SelectedCustomer.Firstname has the following bookings:</p>
+            <ul class="list-group">
+                @foreach (var booking in Model.RelatedBookings)
+                {
+                    <li class="list-group-item"><a href="">@booking.Name</a></li>
+                    // <a href="/Keeper/Details/@keeper.KeeperID">@keeper.KeeperFirstName @keeper.KeeperLastName</a>
+                }
+            </ul>
+        </div>
     </div>
 </div>

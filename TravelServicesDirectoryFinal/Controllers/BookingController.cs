@@ -32,7 +32,8 @@ namespace TravelServicesDirectoryFinal.Controllers
             // instantiating a new client
             client = new HttpClient();
             // defining the base path for the URL
-            client.BaseAddress = new Uri("https://localhost:44375/api/BookingsData/");
+            // removed the /BookingsData from the end to assist the url for customer model queries
+            client.BaseAddress = new Uri("https://localhost:44375/api/");
         }
 
         /// <summary>
@@ -59,7 +60,7 @@ namespace TravelServicesDirectoryFinal.Controllers
             // HttpClient client = new HttpClient();
 
             // defining the URL element to be added to the base address
-            string url = "ListBookings";
+            string url = "BookingsData/ListBookings";
 
             // the response for the client
             HttpResponseMessage response = client.GetAsync(url).Result;
@@ -105,7 +106,7 @@ namespace TravelServicesDirectoryFinal.Controllers
             // HttpClient client = new HttpClient();
 
             // defining the URL element to be added to the base address
-            string url = "FindBooking/" + id;
+            string url = "BookingsData/FindBooking/" + id;
 
             // the response for the client
             HttpResponseMessage response = client.GetAsync(url).Result;
@@ -147,6 +148,10 @@ namespace TravelServicesDirectoryFinal.Controllers
         /// A function to display the booking creation form.
         /// 
         /// This function only does the task of displaying the form.
+        /// 
+        /// Here, to list the available customers in the database while creating a new booking, we are using the CustomersDTO to fetch the data
+        /// as an HTTP request.
+        /// 
         /// </summary>
         /// <returns>
         /// The view with the booking creation form
@@ -156,8 +161,14 @@ namespace TravelServicesDirectoryFinal.Controllers
         // GET: Booking/New
         public ActionResult New()
         {
-            // returns the view with the form
-            return View();
+            //information about all customers in the system.
+            //GET api/customersdata/listcustomers
+
+            string url = "customersdata/listcustomers";
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            IEnumerable<CustomerDto> CustomersOptions = response.Content.ReadAsAsync<IEnumerable<CustomerDto>>().Result;
+
+            return View(CustomersOptions);
         }
 
         /// <summary>
@@ -189,7 +200,7 @@ namespace TravelServicesDirectoryFinal.Controllers
              * where the url is the base address for the http client and in case if the json data/file can not be accessed, use the 
              * relative path for the file.
              * */
-            string url = "addbooking";
+            string url = "BookingsData/addbooking";
 
             /*
              * We are using JS serializer to convert the Booking C# object into a JSON string.
@@ -238,7 +249,7 @@ namespace TravelServicesDirectoryFinal.Controllers
             //objective: communicate with our booking data api to retrieve one booking
             //curl https://localhost:44324/api/bookingsdata/findbooking/{id}
 
-            string url = "findbooking/" + id;
+            string url = "BookingsData/findbooking/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             //Debug.WriteLine("The response code is ");
@@ -274,7 +285,7 @@ namespace TravelServicesDirectoryFinal.Controllers
                 // Serialize into JSON
                 // Send the request to the API
 
-                string url = "UpdateBooking/" + id;
+                string url = "BookingsData/UpdateBooking/" + id;
 
 
                 string jsonpayload = jss.Serialize(booking);
@@ -308,7 +319,7 @@ namespace TravelServicesDirectoryFinal.Controllers
         // GET: Booking/DeleteConfirm/5
         public ActionResult DeleteConfirm(int id)
         {
-            string url = "findbooking/" + id;
+            string url = "BookingsData/findbooking/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             BookingDto selectedBooking = response.Content.ReadAsAsync<BookingDto>().Result;
             return View(selectedBooking);
@@ -326,7 +337,7 @@ namespace TravelServicesDirectoryFinal.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            string url = "deletebooking/" + id;
+            string url = "BookingsData/deletebooking/" + id;
             HttpContent content = new StringContent("");
             content.Headers.ContentType.MediaType = "application/json";
             HttpResponseMessage response = client.PostAsync(url, content).Result;

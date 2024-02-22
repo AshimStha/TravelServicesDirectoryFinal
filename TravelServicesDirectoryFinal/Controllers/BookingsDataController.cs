@@ -56,6 +56,51 @@ namespace TravelServicesDirectoryFinal.Controllers
             return BookingDtos;
         }
 
+        /// <summary>
+        /// Retreives the bookings info for a particular customer
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all bookings in the database, including their associated customer who made the booking
+        /// </returns>
+        /// <param name="id">The Customer ID</param>
+        /// <example>
+        /// GET: api/BookingData/ListBookingsForCustomers/3
+        /// </example>
+        /// 
+        /// <steps>
+        ///     - First the api was created to list the information to be shared
+        ///     - The query is the line with Where: List<Booking> Bookings = db.Bookings.Where(a => a.CustomerId == id).ToList();
+        ///     - Then, create the ViewModel and import the DTO classes
+        ///     - In the display view, use the new ViewModel object to access the data
+        /// </steps>
+        /// 
+        [HttpGet]
+        [ResponseType(typeof(BookingDto))]
+        public IHttpActionResult ListBookingsForCustomers(int id)
+        {
+            //SQL Equivalent:
+            //Select * from bookings where customer.CustomerId = {id}
+            List<Booking> Bookings = db.Bookings.Where(c => c.CustomerId == id).ToList();
+            List<BookingDto> BookingDtos = new List<BookingDto>();
+
+            Bookings.ForEach(c => BookingDtos.Add(new BookingDto()
+            {
+                BookingId = c.BookingId,
+                // using the entity relationship for these Customer entity columns
+                Firstname = c.Customer.Firstname,
+                Lastname = c.Customer.Lastname,
+                // using the entity relationship for these Package entity columns
+                Name = c.Package.Name,
+                Type = c.Package.Type,
+                Status = c.Status,
+                BookingDate = c.BookingDate,
+                GrandTotal = c.GrandTotal
+            }));
+
+            return Ok(BookingDtos);
+        }
+
         /*
          * A function to find a specific booking from the database using the id
          * It uses the Booking, BookingDto, Customer and Package model classes to access the data.

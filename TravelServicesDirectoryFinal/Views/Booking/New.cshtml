@@ -1,4 +1,8 @@
-﻿@{
+﻿<!--Importing the CustomerDTO for the selection option in the customers list-->
+﻿@model IEnumerable<TravelServicesDirectoryFinal.Models.CustomerDto>
+
+
+@{
     ViewBag.Title = "Create";
 }
 
@@ -31,8 +35,14 @@
         <input type="text" class="form-control" id="PId" placeholder="Enter the package id">
     </div>
     <div class="form-group pb-2">
-        <label for="CId">Customer ID:</label>
-        <input type="text" class="form-control" id="CId" placeholder="Enter your name">
+        <label for="CId">Select Customer:</label>
+        <select name="CustomerID">
+            @foreach (var customers in Model)
+            {
+                <option value="@customers.CustomerId">@customers.Firstname @customers.Lastname</option>
+
+            }
+        </select>
     </div>
     <div>
         <input type="submit" class="btn btn-primary" value="Add Booking" />
