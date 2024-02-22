@@ -10,7 +10,7 @@ provide them the travel services that includes accommodation, expense details, a
 - ViewModels: In order to make the application more convenient and practical, the concept of viewModels have been used for efficient data sharing among the model classes.
 - Views: The application has a neat and proper user interface for ease of use to the users.
 
-## Technologies used
+## Technologies Used
 
 - ASP.NET MVC Framework: The web application is developed using the ASP.NET MVC framework, providing a robust and scalable architecture for building dynamic web applications.
 - C# Programming Language: C# is used for server-side scripting and backend logic, handling data processing and other server-side functionalities.
@@ -44,4 +44,6 @@ Follow these steps to install the project:
 
 6. Step 6: Run the application
 
-## Usage
+## Contribution Guidelines
+
+Contributions to the Travel Services Directory project are welcome! If you'd like to contribute, please fork the repository, make your changes, and submit a pull request. Be sure to follow the project's coding standards and guidelines.
