@@ -2,31 +2,40 @@
     ViewBag.Title = "Home Page";
 }
 
-﻿<main>
-     <div class="container mt-5 mb-5 d-flex flex-grow-1 justify-content-center">
+<main>
+    <div class="container mt-5 mb-5">
+        <div class="row justify-content-center">
 
-         <!--The customers-->
-         <div class="card h-25 w-25 p-2 me-3">
-             <div class="card-body border-top border-bottom">
-                 <h5 class="card-title text-center"><a class="fs-4 fw-bold text-decoration-none text-danger" href="/Customer/List">Customers</a></h5>
-                 <p class="card-text text-center">View Customers</p>
-             </div>
-         </div>
+            <!-- The customers -->
+            <div class="col-md-4 mb-3">
+                <div class="card h-100 bg-primary text-white">
+                    <div class="card-body border-top border-bottom">
+                        <h5 class="card-title text-center"><a class="fs-4 fw-bold text-decoration-none text-white" href="/Customer/List">Customers</a></h5>
+                        <p class="card-text text-center">View Customers</p>
+                    </div>
+                </div>
+            </div>
 
-         <!--The packages-->
-         <div class="card h-25 w-25 p-2 me-3">
-             <div class="card-body border-top border-bottom">
-                 <h5 class="card-title text-center fw-bold text-decoration-none text-danger"><a class="fs-4 fw-bold text-decoration-none text-danger" href="/Package/List">Packages</a></h5>
-                 <p class="card-text text-center">View Packages</p>
-             </div>
-         </div>
+            <!-- The packages -->
+            <div class="col-md-4 mb-3">
+                <div class="card h-100 bg-success text-white">
+                    <div class="card-body border-top border-bottom">
+                        <h5 class="card-title text-center fw-bold text-decoration-none text-white"><a class="fs-4 fw-bold text-decoration-none text-white" href="/Package/List">Packages</a></h5>
+                        <p class="card-text text-center">View Packages</p>
+                    </div>
+                </div>
+            </div>
 
-         <!--The bookings-->
-         <div class="card h-25 w-25 p-2">
-             <div class="card-body border-top border-bottom">
-                 <h5 class="card-title text-center fw-bold text-decoration-none text-danger"><a class="fs-4 fw-bold text-decoration-none text-danger" href="/Booking/List">Bookings</a></h5>
-                 <p class="card-text text-center">View Bookings</p>
-             </div>
-         </div>
-     </div>
+            <!-- The bookings -->
+            <div class="col-md-4 mb-3">
+                <div class="card h-100 bg-danger text-white">
+                    <div class="card-body border-top border-bottom">
+                        <h5 class="card-title text-center fw-bold text-decoration-none text-white"><a class="fs-4 fw-bold text-decoration-none text-white" href="/Booking/List">Bookings</a></h5>
+                        <p class="card-text text-center">View Bookings</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
+
