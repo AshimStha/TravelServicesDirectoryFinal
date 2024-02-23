@@ -15,8 +15,13 @@
 <!--For each customers in our model-->
 @foreach (var customer in Model)
 {
-    // The a tag leads to the customer details page
-    <h4><a href="/Customer/Details/@customer.CustomerId">@customer.Firstname @customer.Lastname</a></h4>
-    // @customer means we are talking about the customer
-    <p class="pb-2">Email: @customer.Email</p>
+    <!-- Bootstrap card for each customer -->
+    <div class="card mb-3 hover-effect">
+        <div class="card-body">
+            <!-- Heading with a link to the customer details page -->
+            <h4 class="card-title"><a href="/Customer/Details/@customer.CustomerId">@customer.Firstname @customer.Lastname</a></h4>
+            <!-- Customer's email -->
+            <p class="card-text pb-2">Email: @customer.Email</p>
+        </div>
+    </div>
 }

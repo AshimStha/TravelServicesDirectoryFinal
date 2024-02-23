@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Diagnostics;
 using TravelServicesDirectoryFinal.Models;
 using System.Web.Script.Serialization;
+using TravelServicesDirectoryFinal.Models.ViewModels;
 
 namespace TravelServicesDirectoryFinal.Controllers
 {
@@ -31,7 +32,7 @@ namespace TravelServicesDirectoryFinal.Controllers
             // instantiating a new client
             client = new HttpClient();
             // defining the base path for the URL
-            client.BaseAddress = new Uri("https://localhost:44375/api/CustomersData/");
+            client.BaseAddress = new Uri("https://localhost:44375/api/");
         }
 
         /// <summary>
@@ -57,7 +58,7 @@ namespace TravelServicesDirectoryFinal.Controllers
             // HttpClient client = new HttpClient();
 
             // defining the URL element to be added to the base address
-            string url = "ListCustomers";
+            string url = "CustomersData/ListCustomers";
 
             // the response for the client
             HttpResponseMessage response = client.GetAsync(url).Result;
@@ -99,18 +100,18 @@ namespace TravelServicesDirectoryFinal.Controllers
         // GET: Customer/Details/5
         public ActionResult Details(int id)
         {
-            // defining a new http client object
-            // HttpClient client = new HttpClient();
+            DetailsCustomer ViewModel = new DetailsCustomer();
+
+            //objective: communicate with our customer data api to retrieve one customer
+            //curl https://localhost:44324/api/customersdata/findcustomer/{id}
 
             // defining the URL element to be added to the base address
-            string url = "FindCustomer/" + id;
-
-            // the response for the client
+            string url = "CustomersData/FindCustomer/" + id;
+            // sending the content data result to the url as the response
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            // to check the status code of the response
-            // Debug.WriteLine("The response code is: ");
-            // Debug.WriteLine(response.StatusCode);
+            Debug.WriteLine("The response code is ");
+            Debug.WriteLine(response.StatusCode);
 
             /*
              * Here, we are parsing the selected customer from the response.
@@ -120,12 +121,31 @@ namespace TravelServicesDirectoryFinal.Controllers
              * also have the attributes from the other related tables. Such columns can also be made accessible when using the DTO class.
              * 
              */
-            CustomerDto selectedCustomer = response.Content.ReadAsAsync<CustomerDto>().Result;
-            // Debug.WriteLine("The received customer was: ");
-            // Debug.WriteLine(selectedCustomer.Firstname, selectedCustomer.Lastname);
+            CustomerDto SelectedCustomer = response.Content.ReadAsAsync<CustomerDto>().Result;
+            Debug.WriteLine("Customer received : ");
+            Debug.WriteLine(SelectedCustomer.Firstname);
+
+            // defining the viewModel class property
+            ViewModel.SelectedCustomer = SelectedCustomer;
+
+            //show associated bookings with this customer
+            url = "BookingsData/ListBookingsForCustomers/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<BookingDto> RelatedBookings = response.Content.ReadAsAsync<IEnumerable<BookingDto>>().Result;
+
+            // defining the viewModel class property
+            ViewModel.RelatedBookings = RelatedBookings;
+
+            // showing the unassociated bookings for this customer
+            // url = "BookingsData/ListBookingsNotByCustomers/" + id;
+            // response = client.GetAsync(url).Result;
+            // IEnumerable<BookingDto> AvailableBookings = response.Content.ReadAsAsync<IEnumerable<BookingDto>>().Result;
+
+            // defining the viewModel class property
+            // ViewModel.AvailableBookings = AvailableBookings;
 
             // returning the details view with the selected customer
-            return View(selectedCustomer);
+            return View(ViewModel);
         }
 
         /// <summary>
@@ -184,7 +204,7 @@ namespace TravelServicesDirectoryFinal.Controllers
              * where the url is the base address for the http client and in case if the json data/file can not be accessed, use the 
              * relative path for the file.
              * */
-            string url = "addcustomer";
+            string url = "CustomersData/addcustomer";
 
             /*
              * We are using JS serializer to convert the Customer C# object into a JSON string.
@@ -233,7 +253,7 @@ namespace TravelServicesDirectoryFinal.Controllers
             //objective: communicate with our customer data api to retrieve one customer
             //curl https://localhost:44324/api/customersdata/findcustomer/{id}
 
-            string url = "findcustomer/" + id;
+            string url = "CustomersData/findcustomer/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             //Debug.WriteLine("The response code is ");
@@ -270,7 +290,7 @@ namespace TravelServicesDirectoryFinal.Controllers
                 // Serialize into JSON
                 // Send the request to the API
 
-                string url = "UpdateCustomer/" + id;
+                string url = "CustomersData/UpdateCustomer/" + id;
 
 
                 string jsonpayload = jss.Serialize(customer);
@@ -292,30 +312,49 @@ namespace TravelServicesDirectoryFinal.Controllers
             }
         }
 
-        /*
-         * Delete was not implemented for this model because there is no need. The admin handles the booking and performs the action on 
-         * the booking entries.
-         */
+        /// <summary>
+        /// Function to show the delete confirm dialog box.
+        /// </summary>
+        /// <param name="id">The customer id to be deleted</param>
+        /// <returns>
+        /// The delete confirm dialog box.
+        /// </returns>
+        /// 
 
-        // GET: Customer/Delete/5
-        public ActionResult Delete(int id)
+        // GET: Customer/DeleteConfirm/5
+        public ActionResult DeleteConfirm(int id)
         {
-            return View();
+            string url = "CustomersData/FindCustomer/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            CustomerDto selectedCustomer = response.Content.ReadAsAsync<CustomerDto>().Result;
+            return View(selectedCustomer);
         }
+
+        /// <summary>
+        /// Function to delete the selected customer entry.
+        /// </summary>
+        /// <param name="id">The customer id</param>
+        /// <returns>
+        /// The list of customers if successful else, the error view page.
+        /// </returns>
+        /// 
 
         // POST: Customer/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            string url = "CustomersData/DeleteCustomer/" + id;
+            HttpContent content = new StringContent("");
+            content.Headers.ContentType.MediaType = "application/json";
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
 
-                return RedirectToAction("Index");
-            }
-            catch
+            if (response.IsSuccessStatusCode)
             {
-                return View();
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return RedirectToAction("Error");
             }
         }
     }

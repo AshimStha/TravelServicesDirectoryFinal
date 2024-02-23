@@ -6,35 +6,37 @@
     ViewBag.Title = "Booking Details";
 }
 
-<h2>Details</h2>
+<h2>Booking Details</h2>
 
-<!--Link to to back to the bookings list page-->
-<a href="/Booking/List">Go back to Bookings list</a>
+<!-- Link to go back to the bookings list page -->
+<a href="/Booking/List" class="btn btn-secondary my-3">Go back to Bookings list</a>
 
 <div class="container mt-2 mb-5">
-    <div class="card w-50">
-        <h2 class="card-header"><span class="fw-bold">@Model.Name</span></h2>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-8">
-                    <p class="card-title text-danger fs-3 pb-3"><span class="fw-bold">Package Type:</span>@Model.Type</p>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title"><span class="fw-bold">@Model.Name</span></h2>
                 </div>
-
-                <!--Delete Booking-->
-                <div class="col-md-2 d-flex justify-content-end align-items-center">
-                    <a href="/Booking/DeleteConfirm/@Model.BookingId" class="btn btn-danger">Delete</a>
-                </div>
-
-                <!--Update Booking-->
-                <div class="col-md-2 d-flex justify-content-start align-items-center">
-                    <a href="/Booking/Edit/@Model.BookingId" class="btn btn-primary">Update</a>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <p class="card-text text-danger fs-3 pb-3"><span class="fw-bold">Package Type:</span> @Model.Type</p>
+                        </div>
+                        <div class="col-md-2 d-flex justify-content-end align-items-center">
+                            <a href="/Booking/DeleteConfirm/@Model.BookingId" class="btn btn-danger">Delete</a>
+                        </div>
+                        <div class="col-md-2 d-flex justify-content-start align-items-center">
+                            <a href="/Booking/Edit/@Model.BookingId" class="btn btn-primary">Update</a>
+                        </div>
+                    </div>
+                    <p class="card-text"><span class="fw-bold">Firstname:</span> @Model.Firstname</p>
+                    <p class="card-text"><span class="fw-bold">Lastname:</span> @Model.Lastname</p>
+                    <p class="card-text"><span class="fw-bold">Status:</span> @Model.Status</p>
+                    <p class="card-text"><span class="fw-bold">Booked On:</span> @Model.BookingDate</p>
+                    <p class="card-text"><span class="fw-bold">Grand Total:</span> @Model.GrandTotal</p>
                 </div>
             </div>
-            <p class="card-text"><span class="fw-bold">Firstname:</span> @Model.Firstname</p>
-            <p class="card-text"><span class="fw-bold">Lastname:</span> @Model.Lastname</p>
-            <p class="card-text"><span class="fw-bold">Status:</span> @Model.Status</p>
-            <p class="card-text"><span class="fw-bold">Booked On:</span> @Model.BookingDate</p>
-            <p class="card-text"><span class="fw-bold">Grand Total:</span> @Model.GrandTotal</p>
         </div>
     </div>
 </div>

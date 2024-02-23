@@ -194,7 +194,7 @@ namespace TravelServicesDirectoryFinal.Controllers
 
             /*
              * The curl request would be something like;
-             * curl -H "Content-Type:application/json" -d @bookings.json https://localhost:44375/api/BookingsData/ 
+             * curl -H "Content-Type:application/json" -d @bookings.json https://localhost:44375/api/BookingsData 
              * (similar to the CURL request used for the API)
              * 
              * where the url is the base address for the http client and in case if the json data/file can not be accessed, use the 

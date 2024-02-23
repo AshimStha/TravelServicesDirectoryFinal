@@ -27,9 +27,11 @@ textarea {
     transition: transform 0.3s;
 }
 
-    .card:hover {
-        transform: scale(1.05);
-    }
+.hover-effect:hover {
+    background-color: #f8f9fa;
+    transform: translateX(-20px);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
 
 
 /* CSS for the index page */
@@ -112,7 +114,7 @@ textarea {
     justify-content: start;
 }
 
-.cust_details .bkng_details #customers_total_bkng .total_p {
+.cust_details .bkng_details #customers_total_bkng #total_p {
     width: 100%;
     background-color: rgb(234, 232, 243);
     color: red;
@@ -120,5 +122,24 @@ textarea {
 }
 
     .cust_details .bkng_details #customers_total_bkng p, ul {
+        width: 100%;
+    }
+
+/*Packages details page*/
+.pkg_details .pkg_bkng_details #package_total_bkng {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
+
+    .pkg_details .pkg_bkng_details #package_total_bkng .total_p {
+        width: 100%;
+        background-color: rgb(234, 232, 243);
+        color: red;
+        border-radius: 8px;
+    }
+
+    .pkg_details .pkg_bkng_details #package_total_bkng p, ul {
         width: 100%;
     }

@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using TravelServicesDirectoryFinal.Models;
+using TravelServicesDirectoryFinal.Models.ViewModels;
 
 namespace TravelServicesDirectoryFinal.Controllers
 {
@@ -31,7 +32,7 @@ namespace TravelServicesDirectoryFinal.Controllers
             // instantiating a new client
             client = new HttpClient();
             // defining the base path for the URL
-            client.BaseAddress = new Uri("https://localhost:44375/api/PackagesData/");
+            client.BaseAddress = new Uri("https://localhost:44375/api/");
         }
 
         /// <summary>
@@ -57,7 +58,7 @@ namespace TravelServicesDirectoryFinal.Controllers
             // HttpClient client = new HttpClient();
 
             // defining the URL element to be added to the base address
-            string url = "ListPackages";
+            string url = "PackagesData/ListPackages";
 
             // the response for the client
             HttpResponseMessage response = client.GetAsync(url).Result;
@@ -99,11 +100,13 @@ namespace TravelServicesDirectoryFinal.Controllers
         // GET: Package/Details/1
         public ActionResult Details(int id)
         {
-            // defining a new http client object
-            // HttpClient client = new HttpClient();
+            DetailsPackage ViewModel = new DetailsPackage();
+
+            //objective: communicate with our packages data api to retrieve one package
+            //curl https://localhost:44324/api/packagesdata/findpackage/{id}
 
             // defining the URL element to be added to the base address
-            string url = "FindPackage/" + id;
+            string url = "PackagesData/FindPackage/" + id;
 
             // the response for the client
             HttpResponseMessage response = client.GetAsync(url).Result;
@@ -120,12 +123,23 @@ namespace TravelServicesDirectoryFinal.Controllers
              * also have the attributes from the other related tables. Such columns can also be made accessible when using the DTO class.
              * 
              */
-            PackageDto selectedPackage = response.Content.ReadAsAsync<PackageDto>().Result;
+            PackageDto SelectedPackage = response.Content.ReadAsAsync<PackageDto>().Result;
             // Debug.WriteLine("The received package was: ");
             // Debug.WriteLine(selectedPackage.Name);
 
+            // defining the viewModel class property
+            ViewModel.SelectedPackage = SelectedPackage;
+
+            //show associated bookings for this package
+            url = "BookingsData/ListBookingsForPackages/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<BookingDto> RelatedCustomers = response.Content.ReadAsAsync<IEnumerable<BookingDto>>().Result;
+
+            // defining the viewModel class property
+            ViewModel.RelatedCustomers = RelatedCustomers;
+
             // returning the details view with the selected package
-            return View(selectedPackage);
+            return View(ViewModel);
         }
 
         /// <summary>
@@ -184,7 +198,7 @@ namespace TravelServicesDirectoryFinal.Controllers
              * where the url is the base address for the http client and in case if the json data/file can not be accessed, use the 
              * relative path for the file.
              * */
-            string url = "addpackage";
+            string url = "PackagesData/addpackage";
 
             /*
              * We are using JS serializer to convert the Package C# object into a JSON string.
@@ -233,7 +247,7 @@ namespace TravelServicesDirectoryFinal.Controllers
             //objective: communicate with our package data api to retrieve one package
             //curl https://localhost:44324/api/packagesdata/findpackage/{id}
 
-            string url = "findpackage/" + id;
+            string url = "PackagesData/findpackage/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             //Debug.WriteLine("The response code is ");
@@ -270,7 +284,7 @@ namespace TravelServicesDirectoryFinal.Controllers
                 // Serialize into JSON
                 // Send the request to the API
 
-                string url = "UpdatePackage/" + id;
+                string url = "PackagesData/UpdatePackage/" + id;
 
 
                 string jsonpayload = jss.Serialize(package);

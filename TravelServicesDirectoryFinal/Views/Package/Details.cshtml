@@ -1,6 +1,7 @@
 ﻿<!--Defining the Package model-->
-<!--Was changed to PackageDto to access the packages data-->
-@model TravelServicesDirectoryFinal.Models.PackageDto
+<!--Was changed to PackageDto to access the customers data. Again, changed to the new view model class.-->
+<!--TravelServicesDirectoryFinal.Models.PackageDto-- >
+@model TravelServicesDirectoryFinal.Models.ViewModels.DetailsPackage
 
 @{
     ViewBag.Title = "Package Details";
@@ -9,31 +10,51 @@
 <h2>Details</h2>
 
 <!--Link to to back to the packages list page-->
-<a href="/Package/List">Go back to Packages list</a>
+<a class="btn btn-success my-3" href="/Package/List">Go back to Packages list</a>
 
 <div class="container mt-2 mb-5">
-    <div class="card w-50">
-        <h2 class="card-header"><span class="fw-bold">@Model.Name</span></h2>
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title"><span class="fw-bold">@Model.SelectedPackage.Name</span></h2>
+        </div>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-8">
-                    <p class="card-title text-danger fs-3 pb-3"><span class="fw-bold">Package Type:</span>@Model.Type</p>
+                    <p class="card-text text-danger fs-3 pb-3"><span class="fw-bold">Package Type:</span> @Model.SelectedPackage.Type</p>
                 </div>
-
-                <!--Delete Package-->
                 <div class="col-md-2 d-flex justify-content-end align-items-center">
-                    <a href="/Package/DeleteConfirm/@Model.PkgId" class="btn btn-danger">Delete</a>
+                    <a href="/Package/DeleteConfirm/@Model.SelectedPackage.PkgId" class="btn btn-danger">Delete</a>
                 </div>
-
-                <!--Update Package-->
                 <div class="col-md-2 d-flex justify-content-start align-items-center">
-                    <a href="/Package/Edit/@Model.PkgId" class="btn btn-primary">Update</a>
+                    <a href="/Package/Edit/@Model.SelectedPackage.PkgId" class="btn btn-primary">Update</a>
                 </div>
             </div>
-            <p class="card-text"><span class="fw-bold">Destination:</span> @Model.Destination</p>
-            <p class="card-text"><span class="fw-bold">Departure Date:</span> @Model.Departure</p>
-            <p class="card-text"><span class="fw-bold">Arrival Date:</span> @Model.Arrival</p>
-            <p class="card-text"><span class="fw-bold">Cost:</span> @Model.Cost</p>
+            <p class="card-text"><span class="fw-bold">Destination:</span> @Model.SelectedPackage.Destination</p>
+            <p class="card-text"><span class="fw-bold">Departure Date:</span> @Model.SelectedPackage.Departure</p>
+            <p class="card-text"><span class="fw-bold">Arrival Date:</span> @Model.SelectedPackage.Arrival</p>
+            <p class="card-text"><span class="fw-bold">Cost:</span> @Model.SelectedPackage.Cost</p>
+        </div>
+    </div>
+
+    <div class="col mt-5">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title text-bg-danger p-2">Booked by @Model.RelatedCustomers.Count() customers</h4>
+                <p class="card-text"><span class="fw-bold">@Model.SelectedPackage.Name</span> has been booked by the following customers:</p>
+                <ul class="list-group">
+                    @if (Model.RelatedCustomers.Any())
+                    {
+                        foreach (var customer in Model.RelatedCustomers)
+                        {
+                            <li class="list-group-item"><a class="fs-5 text-decoration-none text-danger" href="/Customer/Details/@customer">@customer.Firstname @customer.Lastname</a></li>
+                        }
+                    }
+                    else
+                    {
+                        <li class="list-group-item">No customers have booked this package yet!</li>
+                    }
+                </ul>
+            </div>
         </div>
     </div>
 </div>

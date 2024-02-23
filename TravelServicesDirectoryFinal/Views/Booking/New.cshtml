@@ -9,7 +9,7 @@
 <h2>Create a Booking</h2>
 
 <!--Link to to back to the bookings list page-->
-<a href="/Booking/List">Go back to Bookings list</a>
+<a class="btn btn-danger my-3" href="/Booking/List">Go back to Bookings list</a>
 
 <!--Form for the booking creation-->
 <form action="/Booking/Create" method="POST">
@@ -36,7 +36,7 @@
     </div>
     <div class="form-group pb-2">
         <label for="CId">Select Customer:</label>
-        <select name="CustomerID">
+        <select name="CustomerID" id="CId">
             @foreach (var customers in Model)
             {
                 <option value="@customers.CustomerId">@customers.Firstname @customers.Lastname</option>
@@ -45,7 +45,7 @@
         </select>
     </div>
     <div>
-        <input type="submit" class="btn btn-primary" value="Add Booking" />
+        <input type="submit" class="btn btn-primary mt-2" value="Add Booking" />
     </div>
 </form>
 

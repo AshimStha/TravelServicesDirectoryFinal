@@ -80,7 +80,7 @@ namespace TravelServicesDirectoryFinal.Controllers
         public IHttpActionResult ListBookingsForCustomers(int id)
         {
             //SQL Equivalent:
-            //Select * from bookings where customer.CustomerId = {id}
+            //Select * from bookings where bookings.CustomerId = {id}
             List<Booking> Bookings = db.Bookings.Where(c => c.CustomerId == id).ToList();
             List<BookingDto> BookingDtos = new List<BookingDto>();
 
@@ -96,6 +96,51 @@ namespace TravelServicesDirectoryFinal.Controllers
                 Status = c.Status,
                 BookingDate = c.BookingDate,
                 GrandTotal = c.GrandTotal
+            }));
+
+            return Ok(BookingDtos);
+        }
+
+        /// <summary>
+        /// Retreives the bookings info for a particular package
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all bookings in the database, including their associated packages that were booked
+        /// </returns>
+        /// <param name="id">The Package ID</param>
+        /// <example>
+        /// GET: api/BookingData/ListBookingsForPackages/3
+        /// </example>
+        /// 
+        /// <steps>
+        ///     - First the api was created to list the information to be shared
+        ///     - The query is the line with Where: List<Booking> Bookings = db.Bookings.Where(c => c.PkgId == id).ToList();
+        ///     - Then, create the ViewModel and import the DTO classes
+        ///     - In the display view, use the new ViewModel object to access the data
+        /// </steps>
+        /// 
+        [HttpGet]
+        [ResponseType(typeof(BookingDto))]
+        public IHttpActionResult ListBookingsForPackages(int id)
+        {
+            //SQL Equivalent:
+            //Select * from bookings where bookings.PkgId = {id}(The package id)
+            List<Booking> Bookings = db.Bookings.Where(c => c.PkgId == id).ToList();
+            List<BookingDto> BookingDtos = new List<BookingDto>();
+
+            Bookings.ForEach(p => BookingDtos.Add(new BookingDto()
+            {
+                BookingId = p.BookingId,
+                // using the entity relationship for these Customer entity columns
+                Firstname = p.Customer.Firstname,
+                Lastname = p.Customer.Lastname,
+                // using the entity relationship for these Package entity columns
+                Name = p.Package.Name,
+                Type = p.Package.Type,
+                Status = p.Status,
+                BookingDate = p.BookingDate,
+                GrandTotal = p.GrandTotal
             }));
 
             return Ok(BookingDtos);

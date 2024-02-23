@@ -7,7 +7,7 @@
 <h2>Edit Booking Details</h2>
 
 <!--Link to to back to the bookings list page-->
-<a href="/Booking/List">Go back to Bookings list</a>
+<a class="btn btn-danger my-3" href="/Booking/List">Go back to Bookings list</a>
 
 
 <form method="POST" action="/Booking/Update/@Model.BookingId">
@@ -38,7 +38,7 @@
         <input type="number" name="CustomerId" class="form-control" id="CustID" value="@Model.CustomerId" />
     </div>
     <div>
-        <input type="submit" class="btn btn-success" value="Update" />
+        <input type="submit" class="btn btn-success mt-2" value="Update" />
     </div>
 
 </form>

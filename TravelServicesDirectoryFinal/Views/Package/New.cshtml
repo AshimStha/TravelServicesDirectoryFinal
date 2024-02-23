@@ -5,16 +5,16 @@
 <h2>Create a Package</h2>
 
 <!--Link to to back to the packages list page-->
-<a href="/Package/List">Go back to Packages list</a>
+<a class="btn btn-danger my-3" href="/Package/List">Go back to Packages list</a>
 
 <form action="/Package/Create" method="POST">
     <div class="form-group pb-2">
         <label for="PName">Package Name:</label>
-        <input type="text" name="PackageName" class="form-control" id="PName" placeholder="Enter the package name" />
+        <input type="text" name="Name" class="form-control" id="PName" placeholder="Enter the package name" />
     </div>
     <div class="form-group pb-2">
         <label for="PType">Package Type:</label>
-        <input type="text" name="PackageType" class="form-control" id="PType" placeholder="Enter the package type" />
+        <input type="text" name="Type" class="form-control" id="PType" placeholder="Enter the package type" />
     </div>
     <div class="form-group pb-2">
         <label for="AType">Accommodation Type:</label>
@@ -37,6 +37,6 @@
         <input type="number" name="Cost" class="form-control" id="cost" placeholder="Enter the cost" />
     </div>
     <div>
-        <input type="submit" value="Add Package" />
+        <input type="submit" class="btn btn-success mt-2" value="Add Package" />
     </div>
 </form>

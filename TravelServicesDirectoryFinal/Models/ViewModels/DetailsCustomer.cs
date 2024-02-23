@@ -9,5 +9,7 @@ namespace TravelServicesDirectoryFinal.Models.ViewModels
     {
         public CustomerDto SelectedCustomer { get; set; }
         public IEnumerable<BookingDto> RelatedBookings { get; set; }
+        public IEnumerable<BookingDto> AvailableBookings { get; set; }
+
     }
 }

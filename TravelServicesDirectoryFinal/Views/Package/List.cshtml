@@ -13,10 +13,18 @@
 
 
 <!--For each packages in our model-->
-@foreach (var package in Model)
-{
-    // The a tag leads to the package details page
-    <h4><a href="/Package/Details/@package.PkgId">@package.Name</a></h4>
-    // @package means we are talking about the package
-    <p class="pb-2">Cost: @package.Cost</p>
-}
+<div class="container mt-2 mb-5">
+    <div class="row">
+        @foreach (var package in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title"><a href="/Package/Details/@package.PkgId">@package.Name</a></h4>
+                        <p class="card-text pb-2">Cost: @package.Cost</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

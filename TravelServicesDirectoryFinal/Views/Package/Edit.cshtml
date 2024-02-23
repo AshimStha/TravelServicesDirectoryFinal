@@ -7,7 +7,7 @@
 <h2>Edit Package Details</h2>
 
 <!--Link to to back to the packages list page-->
-<a href="/Package/List">Go back to Packages list</a>
+<a class="btn btn-danger my-3" href="/Package/List">Go back to Packages list</a>
 
 <form method="POST" action="/Package/Update/@Model.PkgId">
     <input type="text" style="display:none;" name="PkgId" value="@Model.PkgId" />
@@ -41,6 +41,6 @@
         <input type="number" name="Cost" class="form-control" id="cost" value="@Model.Cost" />
     </div>
     <div>
-        <input type="submit" class="btn btn-success" value="Update Package" />
+        <input type="submit" class="btn btn-success mt-2" value="Update Package" />
     </div>
 </form>

@@ -13,42 +13,72 @@
 <a class="btn btn-success my-3" href="/Customer/List">Go back to Customers list</a>
 
 <div class="container mt-2 mb-5 cust_details">
-    <div class="col">
-        <div class="card w-50">
-            <h2 class="card-header text-danger"><span class="fw-bold">@Model.SelectedCustomer.Firstname @Model.SelectedCustomer.Lastname</span></h2>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-8">
-                        <p class="card-title fs-5 pb-3"><span class="fw-bold">D.O.B: </span>@Model.SelectedCustomer.DOB</p>
-                    </div>
-
-                    <!--Delete Customer-->
-                    <div class="col-md-2 d-flex justify-content-end align-items-center">
-                        <a href="/Customer/DeleteConfirm/@Model.SelectedCustomer.CustomerId" class="btn btn-danger">Delete</a>
-                    </div>
-
-                    <!--Update Customer-->
-                    <div class="col-md-2 d-flex justify-content-start align-items-center">
-                        <a href="/Customer/Edit/@Model.SelectedCustomer.CustomerId" class="btn btn-primary">Update</a>
-                    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <!-- Content for the first column of the upper row -->
+            <div class="card w-100">
+                <div class="card-header bg-danger text-white">
+                    <h2 class="card-title fw-bold">@Model.SelectedCustomer.Firstname @Model.SelectedCustomer.Lastname</h2>
                 </div>
-                <p class="card-text"><span class="fw-bold">Address:</span> @Model.SelectedCustomer.Address</p>
-                <p class="card-text"><span class="fw-bold">Email:</span> @Model.SelectedCustomer.Email</p>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <p class="card-title fs-5"><span class="fw-bold">D.O.B:</span> @Model.SelectedCustomer.DOB</p>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="d-flex justify-content-end align-items-center">
+                                <!--Delete Customer-->
+                                <a href="/Customer/DeleteConfirm/@Model.SelectedCustomer.CustomerId" class="btn btn-danger me-2">Delete</a>
+                                <!--Update Customer-->
+                                <a href="/Customer/Edit/@Model.SelectedCustomer.CustomerId" class="btn btn-primary">Update</a>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="card-text"><span class="fw-bold">Address:</span> @Model.SelectedCustomer.Address</p>
+                    <p class="card-text"><span class="fw-bold">Email:</span> @Model.SelectedCustomer.Email</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <!-- Content for the second column of the upper row (for the profile image)-->
+            <div class="card w-100">
+                <div class="card-body">
+                    <h5 class="card-title">Profile Picture</h5>
+                    <!-- Replace the placeholder text with an actual image -->
+                    <img src="your_image_url.jpg" class="img-fluid" alt="Profile Picture">
+                </div>
             </div>
         </div>
     </div>
-
-    <div class="col bkng_details">
-        <div class="w-50 text-center d-flex align-items-center mt-5" id="customers_total_bkng">
-            <p class="fs-4 fw-bold total_p">Total bookings:  bookings</p>
-            <p class="fs-6">@Model.SelectedCustomer.Firstname has the following bookings:</p>
-            <ul class="list-group">
-                @foreach (var booking in Model.RelatedBookings)
-                {
-                    <li class="list-group-item"><a href="">@booking.Name</a></li>
-                    // <a href="/Keeper/Details/@keeper.KeeperID">@keeper.KeeperFirstName @keeper.KeeperLastName</a>
-                }
-            </ul>
+    <div class="row mt-4 cust_details">
+        <div class="col-md-12 bkng_details">
+            <!-- Content for the single column of the lower row -->
+            <div class="card w-100 mt-5 bg-light">
+                <div class="card-body">
+                    <div class="w-50 text-center mx-auto customers_total_bkng">
+                        @{
+                            // Calculate total number of bookings for the customer
+                            int totalBookings = Model.RelatedBookings.Count();
+                        }
+                        <p class="fs-4 fw-bold text-bg-danger" id="total_p">Total bookings: @totalBookings</p>
+                        <p class="fs-6"><span class="fw-bold">@Model.SelectedCustomer.Firstname</span> has the following bookings:</p>
+                        <ul class="list-group">
+                            @if (Model.RelatedBookings.Any())
+                            {
+                                foreach (var booking in Model.RelatedBookings)
+                                {
+                                    <li class="list-group-item"><a class="fs-5 text-decoration-none text-danger" href="/Booking/Details/@booking.BookingId">@booking.Name</a></li>
+                                }
+                            }
+                            else
+                            {
+                                <li class="list-group-item text-danger">No bookings made yet!</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
+
     </div>
 </div>
