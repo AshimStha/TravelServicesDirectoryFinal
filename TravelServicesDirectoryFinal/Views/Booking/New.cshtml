@@ -1,5 +1,5 @@
 ﻿<!--Importing the CustomerDTO for the selection option in the customers list-->
-﻿@model IEnumerable<TravelServicesDirectoryFinal.Models.CustomerDto>
+﻿@model TravelServicesDirectoryFinal.Models.ViewModels.CreateBooking
 
 
 @{
@@ -15,15 +15,15 @@
 <form action="/Booking/Create" method="POST">
     <div class="form-group pb-2">
         <label for="Status">Status:</label>
-        <input type="text" class="form-control" id="Status" placeholder="Enter the status">
+        <input type="text" class="form-control" id="Status" placeholder="Enter the status" name="Status">
     </div>
     <div class="form-group pb-2">
         <label for="BDate">Booking Date:</label>
-        <input type="date" class="form-control" id="BDate" placeholder="Enter the booking date">
+        <input type="date" class="form-control" id="BDate" placeholder="Enter the booking date" name="BookingDate">
     </div>
     <div class="form-group pb-2">
         <label for="GTotal">Grand Total:</label>
-        <input type="text" class="form-control" id="GTotal" placeholder="Enter the grand total">
+        <input type="text" class="form-control" id="GTotal" placeholder="Enter the grand total" name="GrandTotal">
     </div>
     <!--For the package and customer IDs, we can have the feature of selecting the available IDs from a dropdown menu in the future
     iteration of this application. Since, the users will not have the access to our DB, it can be considered an extra feature to make it
@@ -31,13 +31,19 @@
     <!--For now, we need to add a new data entry in both the tables that have no association with the booking entity and then can provide
         the IDs in these input fields respecting the FK relationships.-->
     <div class="form-group pb-2">
-        <label for="PId">Package ID:</label>
-        <input type="text" class="form-control" id="PId" placeholder="Enter the package id">
+        <label for="PId">Packages:</label>
+        <select name="PkgId" id="PId">
+            @foreach (var package in Model.packages)
+            {
+                <option value="@package.PkgId">@package.Name </option>
+
+            }
+        </select>
     </div>
     <div class="form-group pb-2">
         <label for="CId">Select Customer:</label>
         <select name="CustomerID" id="CId">
-            @foreach (var customers in Model)
+            @foreach (var customers in Model.customers)
             {
                 <option value="@customers.CustomerId">@customers.Firstname @customers.Lastname</option>
 

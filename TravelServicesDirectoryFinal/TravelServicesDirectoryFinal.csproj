@@ -212,6 +212,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Package.cs" />
+    <Compile Include="Models\ViewModels\CreateBooking.cs" />
     <Compile Include="Models\ViewModels\DetailsBooking.cs" />
     <Compile Include="Models\ViewModels\DetailsCustomer.cs" />
     <Compile Include="Models\ViewModels\DetailsPackage.cs" />

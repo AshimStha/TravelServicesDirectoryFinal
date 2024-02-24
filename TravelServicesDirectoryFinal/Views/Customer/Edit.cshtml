@@ -7,7 +7,7 @@
 <h2>Edit Customer Details</h2>
 
 <!--Link to to back to the customers list page-->
-<a href="/Customer/List">Go back to Customers</a>
+<a class="btn btn-danger my-3" href="/Customer/List">Go back to Customers</a>
 
 <!--Form to create a new customer-->
 <form method="POST" action="/Customer/Update/@Model.CustomerId">
@@ -38,6 +38,6 @@
         <input type="text" name="Phone" class="form-control" id="Phone" placeholder="Enter the phone" value="@Model.Phone" />
     </div>
     <div>
-        <input type="submit" class="btn btn-success" value="Update Customer" />
+        <input type="submit" class="btn btn-success mt-3" value="Update Customer" />
     </div>
 </form>

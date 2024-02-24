@@ -8,6 +8,8 @@ using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using TravelServicesDirectoryFinal.Migrations;
 using TravelServicesDirectoryFinal.Models;
+using TravelServicesDirectoryFinal.Models.ViewModels;
+
 
 namespace TravelServicesDirectoryFinal.Controllers
 {
@@ -166,9 +168,21 @@ namespace TravelServicesDirectoryFinal.Controllers
 
             string url = "customersdata/listcustomers";
             HttpResponseMessage response = client.GetAsync(url).Result;
+
+            // import the view modal for customer list and package list
+            CreateBooking CreateBookingViewModel = new CreateBooking();
             IEnumerable<CustomerDto> CustomersOptions = response.Content.ReadAsAsync<IEnumerable<CustomerDto>>().Result;
 
-            return View(CustomersOptions);
+            CreateBookingViewModel.customers = CustomersOptions;
+
+            // GET api/PackagesData/ListPackages
+            url = "PackagesData/ListPackages";
+            response = client.GetAsync(url).Result;
+            IEnumerable<PackageDto> packages = response.Content.ReadAsAsync<IEnumerable<PackageDto>>().Result;
+
+            CreateBookingViewModel.packages = packages;
+
+            return View(CreateBookingViewModel);
         }
 
         /// <summary>
